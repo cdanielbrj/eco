@@ -1,13 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-.h-custom {
-    height: calc(100% - 73px);
-    }
-    @media (max-width: 450px) {
-    .h-custom {
-    height: 100%;
-    }
-}
-
 body {
     background-color: #f7f7f7;
 }
