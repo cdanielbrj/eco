@@ -12,6 +12,7 @@ Pablo Rangel
 
 ## Tecnologias Utilizadas
 
-Angular com Bootstrap
+Angular 16.2
+Bootstrap 5.3
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
