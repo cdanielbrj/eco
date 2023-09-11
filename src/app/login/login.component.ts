@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   constructor(private router: Router) { }
 
-  ExpeditionPage() {
-    this.router.navigate(['/expedition']);
+  DashboardPage() {
+    this.router.navigate(['/dashboard']);
   }
 }
