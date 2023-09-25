@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container py-4 h-100">
-        
+
         <!-- Logo -->
         <a class="navbar-brand" href="#">
             <img src="assets/images/logo-icon.svg" height="55" alt="Eco Logo" loading="lazy" />
@@ -9,31 +9,103 @@
 
         <!-- Menu -->
         <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Expedição</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">Expedição</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="/expedition">Iniciar nova expedição</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Alterar uma expedição</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Finalizar uma expedição</a>
+                    </li>
+                </ul>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Bolsista</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">Bolsista</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="#">Criar o perfil de um novo(a) bolsista</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Editar o perfil um(a) bolsista</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Excluir o perfil de um(a) bolsista</a>
+                    </li>
+                </ul>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Embarcação</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">Embarcação</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="#">Cadastrar nova embarcação</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Atualizar uma embarcação</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Suspender uma embarcação</a>
+                    </li>
+                </ul>
             </li>
         </ul>
 
-        <!-- COnfigurações -->
+        <!-- Configurações -->
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
-                role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                <img src="assets/images/gear.svg" class="rounded-circle" height="25" alt="Ícone de Configurações"
-                    loading="lazy" />
-            </a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="assets/images/gear.svg" height="25" alt="Ícone de Configurações" loading="lazy" />
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="#">Cadastrar usuário</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Editar usuário</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Sair do sistema</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </nav>
 <!-- Navbar -->
 
 
-<div class="container py-5 h-100">
+<div class="dashboard container py-5 h-100">
     <div class="card rounded-3">
         <div class="card-body p-md-0 mx-md-1">
             <table class="table table-striped align-middle mb-0 bg-white">
@@ -52,7 +124,7 @@
                 </thead>
                 <tbody>
                     <!-- Linha Modelo -->
-                    <tr>
+                    <tr *ngFor="let ExpeditionList of expeditions">
                         <!-- Status -->
                         <td>
                             <div class="ms-3">
@@ -62,390 +134,36 @@
 
                         <!-- Bolsista -->
                         <td>
-                            <div class="d-flex align-items-center">
-
-                                <!-- fst-italic -->
-                                <p class="fw-normal mb-1">KZela</p>
-                                <!-- API do WhatsApp -->
-                                <!-- <p class="text-muted mb-0">john.doe@gmail.com</p> -->
-
+                            <div class="d-flex align-items-center">                    
+                                <p class="fw-normal mb-1">{{ ExpeditionList.bolsista }}</p>
                             </div>
                         </td>
 
                         <!-- Data -->
                         <td>
-                            <p class="fw-normal mb-1">10/09/23</p>
-                            <!-- <p class="text-muted mb-0">19:00</p> -->
+                            <p class="fw-normal mb-1">{{ ExpeditionList.data }}</p>
                         </td>
 
                         <!-- Hora -->
                         <td>
-                            <p class="text-muted mb-1">19:00</p>
+                            <p class="fw-normal mb-1">{{ ExpeditionList.hora_inicio }}</p>
                         </td>
 
                         <!-- Local de Coleta -->
                         <td>
-                            <p class="fw-normal mb-1">Ninho do Urubu</p>
+                            <p class="fw-normal mb-1">{{ ExpeditionList.local_coleta }}</p>
                         </td>
 
                         <!-- Embarcação -->
                         <td>
-                            <p class="fw-normal mb-1">Vasco da Gama</p>
+                            <p class="fw-normal mb-1">{{ ExpeditionList.barco }}</p>
 
                         </td>
 
                         <!-- Status -->
                         <td>
-                            <button type="button" class="btn btn-primary btn-md" style="padding: .5rem; background-color: #01afef;
-                                        border-color: #01afef;">Finalizar</button>
-                        </td>
-                    </tr>
-
-                    <!-- Linha 1 -->
-                    <tr>
-                        <!-- Status -->
-                        <td>
-                            <div class="ms-3">
-                                <span class="badge text-bg-success">Criado</span>
-                            </div>
-                        </td>
-
-                        <!-- Bolsista -->
-                        <td>
-                            <div class="d-flex align-items-center">
-
-                                <!-- fst-italic -->
-                                <p class="fw-normal mb-1">KZela</p>
-                                <!-- API do WhatsApp -->
-                                <!-- <p class="text-muted mb-0">john.doe@gmail.com</p> -->
-
-                            </div>
-                        </td>
-
-                        <!-- Data -->
-                        <td>
-                            <p class="fw-normal mb-1">10/09/23</p>
-                            <!-- <p class="text-muted mb-0">19:00</p> -->
-                        </td>
-
-                        <!-- Hora -->
-                        <td>
-                            <p class="text-muted mb-1">19:00</p>
-                        </td>
-
-                        <!-- Local de Coleta -->
-                        <td>
-                            <p class="fw-normal mb-1">Ninho do Urubu</p>
-                        </td>
-
-                        <!-- Embarcação -->
-                        <td>
-                            <p class="fw-normal mb-1">Vasco da Gama</p>
-
-                        </td>
-
-                        <!-- Status -->
-                        <td>
-                            <button type="button" class="btn btn-primary btn-md" style="padding: .5rem; background-color: #01afef;
-                                        border-color: #01afef;">Finalizar</button>
-                        </td>
-                    </tr>
-
-                    <!-- Linha 1 -->
-                    <tr>
-                        <!-- Status -->
-                        <td>
-                            <div class="ms-3">
-                                <span class="badge text-bg-success">Criado</span>
-                            </div>
-                        </td>
-
-                        <!-- Bolsista -->
-                        <td>
-                            <div class="d-flex align-items-center">
-
-                                <!-- fst-italic -->
-                                <p class="fw-normal mb-1">KZela</p>
-                                <!-- API do WhatsApp -->
-                                <!-- <p class="text-muted mb-0">john.doe@gmail.com</p> -->
-
-                            </div>
-                        </td>
-
-                        <!-- Data -->
-                        <td>
-                            <p class="fw-normal mb-1">10/09/23</p>
-                            <!-- <p class="text-muted mb-0">19:00</p> -->
-                        </td>
-
-                        <!-- Hora -->
-                        <td>
-                            <p class="text-muted mb-1">19:00</p>
-                        </td>
-
-                        <!-- Local de Coleta -->
-                        <td>
-                            <p class="fw-normal mb-1">Ninho do Urubu</p>
-                        </td>
-
-                        <!-- Embarcação -->
-                        <td>
-                            <p class="fw-normal mb-1">Vasco da Gama</p>
-
-                        </td>
-
-                        <!-- Status -->
-                        <td>
-                            <button type="button" class="btn btn-primary btn-md" style="padding: .5rem; background-color: #01afef;
-                                        border-color: #01afef;">Finalizar</button>
-                        </td>
-                    </tr>
-
-                    <!-- Linha 1 -->
-                    <tr>
-                        <!-- Status -->
-                        <td>
-                            <div class="ms-3">
-                                <span class="badge text-bg-success">Criado</span>
-                            </div>
-                        </td>
-
-                        <!-- Bolsista -->
-                        <td>
-                            <div class="d-flex align-items-center">
-
-                                <!-- fst-italic -->
-                                <p class="fw-normal mb-1">KZela</p>
-                                <!-- API do WhatsApp -->
-                                <!-- <p class="text-muted mb-0">john.doe@gmail.com</p> -->
-
-                            </div>
-                        </td>
-
-                        <!-- Data -->
-                        <td>
-                            <p class="fw-normal mb-1">10/09/23</p>
-                            <!-- <p class="text-muted mb-0">19:00</p> -->
-                        </td>
-
-                        <!-- Hora -->
-                        <td>
-                            <p class="text-muted mb-1">19:00</p>
-                        </td>
-
-                        <!-- Local de Coleta -->
-                        <td>
-                            <p class="fw-normal mb-1">Ninho do Urubu</p>
-                        </td>
-
-                        <!-- Embarcação -->
-                        <td>
-                            <p class="fw-normal mb-1">Vasco da Gama</p>
-
-                        </td>
-
-                        <!-- Status -->
-                        <td>
-                            <button type="button" class="btn btn-primary btn-md" style="padding: .5rem; background-color: #01afef;
-                                        border-color: #01afef;">Finalizar</button>
-                        </td>
-                    </tr>
-
-                    <!-- Linha 1 -->
-                    <tr>
-                        <!-- Status -->
-                        <td>
-                            <div class="ms-3">
-                                <span class="badge text-bg-success">Criado</span>
-                            </div>
-                        </td>
-
-                        <!-- Bolsista -->
-                        <td>
-                            <div class="d-flex align-items-center">
-
-                                <!-- fst-italic -->
-                                <p class="fw-normal mb-1">KZela</p>
-                                <!-- API do WhatsApp -->
-                                <!-- <p class="text-muted mb-0">john.doe@gmail.com</p> -->
-
-                            </div>
-                        </td>
-
-                        <!-- Data -->
-                        <td>
-                            <p class="fw-normal mb-1">10/09/23</p>
-                            <!-- <p class="text-muted mb-0">19:00</p> -->
-                        </td>
-
-                        <!-- Hora -->
-                        <td>
-                            <p class="text-muted mb-1">19:00</p>
-                        </td>
-
-                        <!-- Local de Coleta -->
-                        <td>
-                            <p class="fw-normal mb-1">Ninho do Urubu</p>
-                        </td>
-
-                        <!-- Embarcação -->
-                        <td>
-                            <p class="fw-normal mb-1">Vasco da Gama</p>
-
-                        </td>
-
-                        <!-- Status -->
-                        <td>
-                            <button type="button" class="btn btn-primary btn-md" style="padding: .5rem; background-color: #01afef;
-                                        border-color: #01afef;">Finalizar</button>
-                        </td>
-                    </tr>
-
-                    <!-- Linha 1 -->
-                    <tr>
-                        <!-- Status -->
-                        <td>
-                            <div class="ms-3">
-                                <span class="badge text-bg-success">Criado</span>
-                            </div>
-                        </td>
-
-                        <!-- Bolsista -->
-                        <td>
-                            <div class="d-flex align-items-center">
-
-                                <!-- fst-italic -->
-                                <p class="fw-normal mb-1">KZela</p>
-                                <!-- API do WhatsApp -->
-                                <!-- <p class="text-muted mb-0">john.doe@gmail.com</p> -->
-
-                            </div>
-                        </td>
-
-                        <!-- Data -->
-                        <td>
-                            <p class="fw-normal mb-1">10/09/23</p>
-                            <!-- <p class="text-muted mb-0">19:00</p> -->
-                        </td>
-
-                        <!-- Hora -->
-                        <td>
-                            <p class="text-muted mb-1">19:00</p>
-                        </td>
-
-                        <!-- Local de Coleta -->
-                        <td>
-                            <p class="fw-normal mb-1">Ninho do Urubu</p>
-                        </td>
-
-                        <!-- Embarcação -->
-                        <td>
-                            <p class="fw-normal mb-1">Vasco da Gama</p>
-
-                        </td>
-
-                        <!-- Status -->
-                        <td>
-                            <button type="button" class="btn btn-primary btn-md" style="padding: .5rem; background-color: #01afef;
-                                        border-color: #01afef;">Finalizar</button>
-                        </td>
-                    </tr>
-
-                    <!-- Linha 1 -->
-                    <tr>
-                        <!-- Status -->
-                        <td>
-                            <div class="ms-3">
-                                <span class="badge text-bg-success">Criado</span>
-                            </div>
-                        </td>
-
-                        <!-- Bolsista -->
-                        <td>
-                            <div class="d-flex align-items-center">
-
-                                <!-- fst-italic -->
-                                <p class="fw-normal mb-1">KZela</p>
-                                <!-- API do WhatsApp -->
-                                <!-- <p class="text-muted mb-0">john.doe@gmail.com</p> -->
-
-                            </div>
-                        </td>
-
-                        <!-- Data -->
-                        <td>
-                            <p class="fw-normal mb-1">10/09/23</p>
-                            <!-- <p class="text-muted mb-0">19:00</p> -->
-                        </td>
-
-                        <!-- Hora -->
-                        <td>
-                            <p class="text-muted mb-1">19:00</p>
-                        </td>
-
-                        <!-- Local de Coleta -->
-                        <td>
-                            <p class="fw-normal mb-1">Ninho do Urubu</p>
-                        </td>
-
-                        <!-- Embarcação -->
-                        <td>
-                            <p class="fw-normal mb-1">Vasco da Gama</p>
-
-                        </td>
-
-                        <!-- Status -->
-                        <td>
-                            <button type="button" class="btn btn-primary btn-md" style="padding: .5rem; background-color: #01afef;
-                                        border-color: #01afef;">Finalizar</button>
-                        </td>
-                    </tr>
-
-                    <!-- Linha 1 -->
-                    <tr>
-                        <!-- Status -->
-                        <td>
-                            <div class="ms-3">
-                                <span class="badge text-bg-success">Criado</span>
-                            </div>
-                        </td>
-
-                        <!-- Bolsista -->
-                        <td>
-                            <div class="d-flex align-items-center">
-
-                                <!-- fst-italic -->
-                                <p class="fw-normal mb-1">KZela</p>
-                                <!-- API do WhatsApp -->
-                                <!-- <p class="text-muted mb-0">john.doe@gmail.com</p> -->
-
-                            </div>
-                        </td>
-
-                        <!-- Data -->
-                        <td>
-                            <p class="fw-normal mb-1">10/09/23</p>
-                            <!-- <p class="text-muted mb-0">19:00</p> -->
-                        </td>
-
-                        <!-- Hora -->
-                        <td>
-                            <p class="text-muted mb-1">19:00</p>
-                        </td>
-
-                        <!-- Local de Coleta -->
-                        <td>
-                            <p class="fw-normal mb-1">Ninho do Urubu</p>
-                        </td>
-
-                        <!-- Embarcação -->
-                        <td>
-                            <p class="fw-normal mb-1">Vasco da Gama</p>
-
-                        </td>
-
-                        <!-- Status -->
-                        <td>
+                            <button type="button" class="btn btn-primary btn-md" style="padding: .5rem; background-color: #cd1ef0;
+                                        border-color: #cd1ef0; margin-right: 20px;">Editar</button>
                             <button type="button" class="btn btn-primary btn-md" style="padding: .5rem; background-color: #01afef;
                                         border-color: #01afef;">Finalizar</button>
                         </td>

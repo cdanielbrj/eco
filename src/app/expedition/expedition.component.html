@@ -1,130 +1,103 @@
 <section class="h-100 h-custom gradient-custom-2">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12">
+            <div class="col-8">
                 <div class="card card-registration card-registration-2" style="border-radius: 15px;">
                     <div class="card-body p-0">
                         <div class="row g-0">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="p-5">
-                                    <h3 class="fw-normal mb-5" style="color: #01afef">Informações Gerais</h3>
+                                    <form [formGroup]="expeditionForm" (ngSubmit)="onSubmit()">
+                                        <h3 class="fw-normal mb-5" style="color: #01afef">Informações Gerais</h3>
+                                        <div class="row">
+                                            <!-- Data -->
+                                            <div class="col-md-6 mb-4 pb-2">
+                                                <div class="form-outline">
+                                                    <input type="text" id="data" name="data" formControlName="data"
+                                                        class="form-control form-control-lg" placeholder="Data" />
+                                                </div>
+                                            </div>
 
-                                    <!-- Bolsista -->
-                                    <!-- <div class="col-md-6 mb-4 pb-2">
-                                        <select class="select">
-                                            <option value="1">Title</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                            <option value="4">Four</option>
-                                        </select>
-                                    </div> -->                        
-
-                                    <div class="row">
-                                        <!-- Data -->
-                                        <div class="col-md-6 mb-4 pb-2">
-                                            <div class="form-outline">
-                                                <input type="text" id="form3Examplev3"
-                                                    class="form-control form-control-lg" placeholder="Data" />
+                                            <!-- Hora inicial -->
+                                            <div class="col-md-6 mb-4 pb-2">
+                                                <div class="form-outline">
+                                                    <input type="text" id="hora_inicio" name="hora_inicio" formControlName="hora_inicio"
+                                                        class="form-control form-control-lg"
+                                                        placeholder="Hora: Início" />
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <!-- Hora inicial -->
-                                        <div class="col-md-6 mb-4 pb-2">
+                                        <!-- Área de Coleta -->
+                                        <div class="mb-4 pb-2">
                                             <div class="form-outline">
-                                                <input type="text" id="form3Examplev2"
-                                                    class="form-control form-control-lg" placeholder="Hora: Início" />
+                                                <input type="text" id="local_coleta" name="local_coleta" formControlName="local_coleta"
+                                                    class="form-control form-control-lg"
+                                                    placeholder="Local de Coleta" />
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <!-- Área de Coleta -->
-                                    <div class="mb-4 pb-2">
-                                        <div class="form-outline">
-                                            <input type="text" id="form3Examplev4" class="form-control form-control-lg"
-                                                placeholder="Local de Coleta" />
-                                        </div>
-                                    </div>
+                                        <div class="row">
+                                            <!-- Bolsista -->
+                                            <div class="col-md-6 mb-4 pb-2">
+                                                <div class="form-outline">
+                                                    <input type="text" id="bolsista" name="bolsista" formControlName="bolsista"
+                                                        class="form-control form-control-lg" placeholder="Bolsista" />
+                                                </div>
+                                            </div>
 
-                                    <div class="row">
-                                        <!-- Nome da Área -->
-                                        <div class="col-md-6 mb-4 pb-2 mb-md-0 pb-md-0">
-                                            <div class="form-outline">
-                                                <input type="text" id="form3Examplev5"
-                                                    class="form-control form-control-lg" placeholder="Nome da Área" />
+                                            <!-- Embarcação -->
+                                            <div class="col-md-6 mb-4 pb-2">
+                                                <div class="form-outline">
+                                                    <input type="text" id="barco" name="barco" formControlName="barco"
+                                                        class="form-control form-control-lg" placeholder="Embarcação" />
+                                                </div>
                                             </div>
                                         </div>
-                                        
-                                        <!-- Prefeitura -->
-                                        <div class="col-md-6 mb-4 pb-2 mb-md-0 pb-md-0">
-                                            <div class="form-outline">
-                                                <input type="text" id="form3Examplev5"
-                                                    class="form-control form-control-lg" placeholder="Prefeitura" />
-                                            </div>
-                                        </div>  
-                                    </div>
+
+                                        <button type="submit" class="btn btn-primary btn-lg"
+                                            data-mdb-ripple-color="dark"
+                                            style="background-color: #01afef; border-color: #01afef;">Criar
+                                            Expedição</button>
+                                    </form>
                                 </div>
                             </div>
 
-                            <div class="col-lg-6 bg-indigo text-white">
+                            <!-- <div class="col-lg-6 bg-indigo text-white">
                                 <div class="p-5">
-                                    <h3 class="fw-normal mb-5">Detalhes da Expedição</h3>
-                                    <div class="row">
-                                        <!-- Bolsista -->
-                                        <div class="col-md-6 mb-4 pb-2">
-                                            <div class="form-outline">
-                                                <input type="text" id="form3Examplev3"
-                                                    class="form-control form-control-lg" placeholder="Bolsista" />
-                                            </div>
-                                        </div>
+                                    <h3 class="fw-normal mb-5">Detalhes da Expedição</h3> -->
+                            <!-- <div class="row">                                        
                                         
-                                        <!-- Sacos enviados -->
                                         <div class="col-md-6 mb-4 pb-2">
-                                            <div class="form-floating form-white">
+                                            <div class="form-floating">
                                                 <input type="text" id="form3Examplea4"
                                                     class="form-control form-control-lg" placeholder="" />
-                                                <label class="form-label" for="form3Examplea4">Sacos de lixo
-                                                    enviados</label>
+                                                <label for="form3Examplea4">Sacos enviados</label>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <!-- Pescador Dono -->
+                                        
                                         <div class="col-md-4 mb-4 pb-2">
                                             <div class="form-floating form-white">
                                                 <input type="text" id="form3Examplea4"
                                                     class="form-control form-control-lg" placeholder="" />
                                                 <label class="form-label" for="form3Examplea4">Pescador Dono</label>
                                             </div>
-
                                         </div>
 
-                                        <!-- Pescador Parceiro -->
+                                        
                                         <div class="col-md-4 mb-4 pb-2">
                                             <div class="form-floating form-white">
                                                 <input type="text" id="form3Examplea5"
                                                     class="form-control form-control-lg" placeholder="" />
                                                 <label class="form-label" for="form3Examplea5">Pescador Parceiro</label>
                                             </div>
-
-                                        </div>
-
-                                        <!-- Embarcação -->
-                                        <div class="col-md-4 mb-4 pb-2">
-                                            <div class="form-floating form-white">
-                                                <input type="text" id="form3Examplea5"
-                                                    class="form-control form-control-lg" placeholder="" />
-                                                <label class="form-label" for="form3Examplea5">Nome da Embarcação</label>
-                                            </div>
-
-                                        </div>
-                                    </div>           
-
-                                    <button type="button" class="btn btn-light btn-lg"
-                                        data-mdb-ripple-color="dark">Criar Expedição</button>
-
-                                </div>
-                            </div>
+                                        </div>                                        
+                                    </div> -->
+                            <!-- </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
