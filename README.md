@@ -10,9 +10,6 @@ Anderson de Oliveira | Daniel Conceição | Gilberto Barbosa | Igor Araújo | Lu
 
 Pablo Rangel
 
-## Tecnologias Utilizadas
+## Tecnologias Utilizadas e suas Versões
 
-Angular 16.2
-Bootstrap 5.3
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+Angular 16.2 | Bootstrap 5.3 | Spring Boot 3.1 | Java 17 | JWT 4.4 | MySQL 8
