@@ -25,4 +25,10 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  removeExp(id: String) {
+    this.expeditionsService.deleteExpeditionLists(id).subscribe( data => {
+      console.log(data);
+      this.getExpeditions();
+    })
+  }
 }

@@ -8,13 +8,15 @@ import { ExpeditionList } from '../actions/expedition-list';
 })
 export class ExpeditionsService {
 
-  private baseURL = "http://localhost:8080/general_info";
+  private baseURL = "http://localhost:8080/eco_system/expedition-oprs";
   constructor(private httpClient: HttpClient) { }
 
+  /* Listando Expedições */
   getExpeditionLists(): Observable<ExpeditionList[]>{
     return this.httpClient.get<ExpeditionList[]>(this.baseURL);
   }
 
+  /* Criando Expedições */
   postExpeditionLists(form: any){
     const formData: ExpeditionList = {
       data: form.data,
@@ -24,7 +26,7 @@ export class ExpeditionsService {
       local_coleta: form.local_coleta,
       id: '',
     };
-    return this.httpClient.post('http://localhost:8080/general_info', formData).subscribe(
+    return this.httpClient.post('http://localhost:8080/eco_system/expedition-oprs', formData).subscribe(
       (Response) => {
         console.log(Response);
         return Response;
@@ -34,5 +36,9 @@ export class ExpeditionsService {
         return error;
       }      
     );
+  }
+
+  deleteExpeditionLists(id: String): Observable<Object> {
+    return this.httpClient.delete('http://localhost:8080/eco_system/expedition-oprs/' + id);
   }
 }
