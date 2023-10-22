@@ -38,7 +38,8 @@ export class ExpeditionsService {
     );
   }
 
-  deleteExpeditionLists(id: String): Observable<Object> {
-    return this.httpClient.delete('http://localhost:8080/eco_system/expedition-oprs/' + id);
+  /* Excluindo Expedições */
+  deleteExpeditionLists(id: String): Observable<void> {
+    return this.httpClient.delete<void>('http://localhost:8080/eco_system/expedition-oprs/' + id);
   }
 }

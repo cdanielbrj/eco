@@ -1,177 +1,247 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container py-4 h-100">
+  <div class="container py-4 h-100">
+    <!-- Logo -->
+    <a class="navbar-brand" href="#">
+      <img
+        src="assets/images/logo-icon.svg"
+        height="55"
+        alt="Eco Logo"
+        loading="lazy"
+      />
+    </a>
 
-        <!-- Logo -->
-        <a class="navbar-brand" href="#">
-            <img src="assets/images/logo-icon.svg" height="55" alt="Eco Logo" loading="lazy" />
+    <!-- Menu -->
+    <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          >Expedição</a
+        >
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" href="/expedition"
+              >Iniciar nova expedição</a
+            >
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Alterar uma expedição</a>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Finalizar uma expedição</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          >Bolsista</a
+        >
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" href="#"
+              >Criar o perfil de um novo(a) bolsista</a
+            >
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Editar o perfil um(a) bolsista</a>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item" href="#"
+              >Excluir o perfil de um(a) bolsista</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          >Embarcação</a
+        >
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" href="#">Cadastrar nova embarcação</a>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Atualizar uma embarcação</a>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Suspender uma embarcação</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Configurações -->
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            src="assets/images/gear.svg"
+            height="25"
+            alt="Ícone de Configurações"
+            loading="lazy"
+          />
         </a>
-
-        <!-- Menu -->
-        <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">Expedição</a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="/expedition">Iniciar nova expedição</a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Alterar uma expedição</a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Finalizar uma expedição</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">Bolsista</a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="#">Criar o perfil de um novo(a) bolsista</a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Editar o perfil um(a) bolsista</a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Excluir o perfil de um(a) bolsista</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">Embarcação</a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="#">Cadastrar nova embarcação</a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Atualizar uma embarcação</a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Suspender uma embarcação</a>
-                    </li>
-                </ul>
-            </li>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" href="#">Cadastrar usuário</a>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Editar usuário</a>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Sair do sistema</a>
+          </li>
         </ul>
-
-        <!-- Configurações -->
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <img src="assets/images/gear.svg" height="25" alt="Ícone de Configurações" loading="lazy" />
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="#">Cadastrar usuário</a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Editar usuário</a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Sair do sistema</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+      </li>
+    </ul>
+  </div>
 </nav>
 <!-- Navbar -->
 
-
 <div class="dashboard container py-5 h-100">
-    <div class="card rounded-3">
-        <div class="card-body p-md-0 mx-md-1">
-            <table class="table table-striped align-middle mb-0 bg-white">
-                <thead class="bg-light">
-                    <tr>
-                        <th>
-                            <div class="ms-3">Status</div>
-                        </th>
-                        <th>Bolsista</th>
-                        <th>Data</th>
-                        <th>Hora Início</th>
-                        <th>Local de Coleta</th>
-                        <th>Embarcação</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Linha Modelo -->
-                    <tr *ngFor="let ExpeditionList of expeditions">
-                        <!-- Status -->
-                        <td>
-                            <div class="ms-3">
-                                <span class="badge text-bg-success">Criado</span>
-                            </div>
-                        </td>
+  <div class="card rounded-3">
+    <div class="card-body p-md-0 mx-md-1">
+      <table class="table table-striped align-middle mb-0 bg-white">
+        <thead class="bg-light">
+          <tr>
+            <th>
+              <div class="ms-3">Status</div>
+            </th>
+            <th>Bolsista</th>
+            <th>Data</th>
+            <th>Hora Início</th>
+            <th>Local de Coleta</th>
+            <th>Embarcação</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Linha Modelo -->
+          <tr *ngFor="let ExpeditionList of expeditions">
+            <!-- Status -->
+            <td>
+              <div class="ms-3">
+                <span class="badge text-bg-success">Criado</span>
+              </div>
+            </td>
 
-                        <!-- Bolsista -->
-                        <td>
-                            <div class="d-flex align-items-center">                    
-                                <p class="fw-normal mb-1">{{ ExpeditionList.bolsista }}</p>
-                            </div>
-                        </td>
+            <!-- Bolsista -->
+            <td>
+              <div class="d-flex align-items-center">
+                <p class="fw-normal mb-1">{{ ExpeditionList.bolsista }}</p>
+              </div>
+            </td>
 
-                        <!-- Data -->
-                        <td>
-                            <p class="fw-normal mb-1">{{ ExpeditionList.data }}</p>
-                        </td>
+            <!-- Data -->
+            <td>
+              <p class="fw-normal mb-1">{{ ExpeditionList.data }}</p>
+            </td>
 
-                        <!-- Hora -->
-                        <td>
-                            <p class="fw-normal mb-1">{{ ExpeditionList.hora_inicio }}</p>
-                        </td>
+            <!-- Hora -->
+            <td>
+              <p class="fw-normal mb-1">{{ ExpeditionList.hora_inicio }}</p>
+            </td>
 
-                        <!-- Local de Coleta -->
-                        <td>
-                            <p class="fw-normal mb-1">{{ ExpeditionList.local_coleta }}</p>
-                        </td>
+            <!-- Local de Coleta -->
+            <td>
+              <p class="fw-normal mb-1">{{ ExpeditionList.local_coleta }}</p>
+            </td>
 
-                        <!-- Embarcação -->
-                        <td>
-                            <p class="fw-normal mb-1">{{ ExpeditionList.barco }}</p>
+            <!-- Embarcação -->
+            <td>
+              <p class="fw-normal mb-1">{{ ExpeditionList.barco }}</p>
+            </td>
 
-                        </td>
-
-                        <!-- Status -->
-                        <td>
-                            <button type="button" class="btn btn-primary btn-md" style="padding: .5rem; background-color: #cd1ef0;
-                                        border-color: #cd1ef0; margin-right: 20px;">Editar</button>
-                            <button type="button" class="btn btn-primary btn-md" style="padding: .5rem; background-color: #01afef;
-                                        border-color: #01afef; margin-right: 20px;">Finalizar</button>
-                                        <button type="button" class="btn btn-primary btn-md" style="padding: .5rem; background-color: #ef013c;
-                                        border-color: #ef013c;" (click)="removeExp(ExpeditionList.id)">Excluir</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- Status -->
+            <td>
+              <button
+                type="button"
+                class="btn btn-primary btn-md"
+                style="
+                  padding: 0.5rem;
+                  background-color: #cd1ef0;
+                  border-color: #cd1ef0;
+                  margin-right: 20px;
+                "
+              >
+                Editar
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary btn-md"
+                style="margin-right: 20px;"
+              >
+                Finalizar
+              </button>
+              <button
+                type="button"
+                class="btn btn-md btn-danger"                
+                (click)="openDeleteModal(deleteConfirmationModal, ExpeditionList.id)"
+              >
+                Excluir
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Modal de Confirmação de Exclusão -->
+      <ng-template #deleteConfirmationModal>
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Confirmar Exclusão</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modalRef?.hide()"></button>
         </div>
+        <div class="modal-body">
+          Você tem certeza que deseja excluir esta expedição?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="modalRef?.hide()">Cancelar</button>
+          <button type="button" class="btn btn-danger" (click)="confirmDelete()">Excluir</button>
+        </div>
+      </ng-template>
     </div>
+  </div>
 </div>

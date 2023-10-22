@@ -32,9 +32,14 @@ public class SecurityConfigurations {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "eco_system/auth/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "eco_system/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "eco_system/expedition").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/eco_system/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/eco_system/auth/register").permitAll()
+                        // Listas todas as expedições - all users //
+                        .requestMatchers(HttpMethod.GET, "/eco_system/expedition-oprs").permitAll()
+                        // Criar uma expedição - all users //
+                        .requestMatchers(HttpMethod.POST, "/eco_system/expedition").permitAll()
+                        // Excluir uma expedição - admin only //
+                        .requestMatchers(HttpMethod.DELETE, "/eco_system/expedition-oprs/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { ExpeditionComponent } from './expedition/expedition.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './login/auth.interceptor';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AuthInterceptor } from './login/auth.interceptor';
     NgOptimizedImage,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
