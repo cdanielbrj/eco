@@ -200,27 +200,25 @@
             <td>
               <button
                 type="button"
-                class="btn btn-primary btn-md"
-                style="
-                  padding: 0.5rem;
-                  background-color: #cd1ef0;
-                  border-color: #cd1ef0;
-                  margin-right: 20px;
-                "
+                class="btn btn-warning btn-md"
+                style="margin-right: 20px"
+                (click)="editExpedition(ExpeditionList.id)"
               >
                 Editar
               </button>
               <button
                 type="button"
                 class="btn btn-primary btn-md"
-                style="margin-right: 20px;"
+                style="margin-right: 20px"
               >
                 Finalizar
               </button>
               <button
                 type="button"
-                class="btn btn-md btn-danger"                
-                (click)="openDeleteModal(deleteConfirmationModal, ExpeditionList.id)"
+                class="btn btn-danger btn-md"
+                (click)="
+                  openDeleteModal(deleteConfirmationModal, ExpeditionList.id)
+                "
               >
                 Excluir
               </button>
@@ -232,14 +230,31 @@
       <ng-template #deleteConfirmationModal>
         <div class="modal-header">
           <h5 class="modal-title" id="deleteModalLabel">Confirmar Exclusão</h5>
-          <button type="button" class="btn-close" aria-label="Close" (click)="modalRef?.hide()"></button>
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            (click)="modalRef?.hide()"
+          ></button>
         </div>
         <div class="modal-body">
           Você tem certeza que deseja excluir esta expedição?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="modalRef?.hide()">Cancelar</button>
-          <button type="button" class="btn btn-danger" (click)="confirmDelete()">Excluir</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="modalRef?.hide()"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="confirmDelete()"
+          >
+            Excluir
+          </button>
         </div>
       </ng-template>
     </div>

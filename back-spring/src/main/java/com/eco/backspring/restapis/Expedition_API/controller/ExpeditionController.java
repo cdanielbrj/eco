@@ -21,16 +21,30 @@ public class ExpeditionController {
         return repository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Expedition> getExpeditionById(@PathVariable Long id) {
+        Optional<Expedition> expeditionOptional = repository.findById(id);
+
+        return expeditionOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Expedition> atualizar(@PathVariable Long id, @RequestBody Expedition expedition) {
+        Optional<Expedition> expeditionExistente = repository.findById(id);
+
+        if (expeditionExistente.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        expedition.setId(id);
+        repository.save(expedition);
+
+        return ResponseEntity.ok(expedition);
+    }
+
     @PostMapping
     public void salvar(@RequestBody Expedition expedition) {
         repository.save(expedition);
-    }
-
-    @PutMapping
-    public void alterar(@RequestBody Expedition expedition) {
-        if(expedition.getId()>0) {
-            repository.save(expedition);
-        }
     }
 
     @DeleteMapping("/{id}")

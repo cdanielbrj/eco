@@ -34,11 +34,15 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/eco_system/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/eco_system/auth/register").permitAll()
-                        // Listas todas as expedições - all users //
+                        // Lista todas as expedições - all users //
                         .requestMatchers(HttpMethod.GET, "/eco_system/expedition-oprs").permitAll()
-                        // Criar uma expedição - all users //
+                        // Lista uma expedição - all users //
+                        .requestMatchers(HttpMethod.GET, "/eco_system/expedition-oprs/**").permitAll()
+                        // Atualiza uma expedição - all users //
+                        .requestMatchers(HttpMethod.PUT, "/eco_system/expedition-oprs/**").permitAll()
+                        // Cria uma expedição - all users //
                         .requestMatchers(HttpMethod.POST, "/eco_system/expedition").permitAll()
-                        // Excluir uma expedição - admin only //
+                        // Exclui uma expedição - admin only //
                         .requestMatchers(HttpMethod.DELETE, "/eco_system/expedition-oprs/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
