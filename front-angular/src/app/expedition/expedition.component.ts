@@ -9,10 +9,10 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './expedition.component.html',
   styleUrls: ['./expedition.component.css'],
 })
+
 export class ExpeditionComponent implements OnInit {
   expeditionForm!: FormGroup;
-  /* isFetching: boolean = false;
-  error:any = null; */
+  isEditMode: boolean = false;
   constructor(
     private ExpeditionsService: ExpeditionsService,
     private router: Router,
@@ -28,6 +28,7 @@ export class ExpeditionComponent implements OnInit {
     });
   }
 
+  // Criando a expedição
   initForm() {
     let id = null;
     let data = null;
@@ -46,8 +47,10 @@ export class ExpeditionComponent implements OnInit {
     });
   }
 
+  // Editando uma expedição
   loadExpeditionDetails(id: string) {
     this.ExpeditionsService.getExpeditionDetails(id).subscribe((expedition) => {
+      this.isEditMode = true;
       this.expeditionForm.setValue({
         id: expedition.id,
         data: expedition.data,
@@ -59,6 +62,7 @@ export class ExpeditionComponent implements OnInit {
     });
   }
 
+  // Enviando a expedição
   onSubmit() {
     if (this.expeditionForm.value.id) {
       this.ExpeditionsService.updateExpedition(

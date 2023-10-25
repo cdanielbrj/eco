@@ -1,0 +1,27 @@
+section{
+    background-color: #f4f5f7;
+    
+    .gradient-custom {
+        border-top-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+    
+        @media(max-width: 769px){
+            border-top-right-radius: 0.5rem;
+            border-bottom-left-radius: 0rem;
+        }
+    
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right bottom, rgb(1, 175, 239, 1), rgb(141, 133, 253));
+    
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right bottom, rgb(1, 175, 239, 1), rgb(19, 10, 107));
+    
+        .profile-pic{
+            width: 80px;
+        }
+    }
+    
+    .fisher {
+        margin-bottom: 1.5rem;    
+    }
+}

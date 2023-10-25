@@ -11,13 +11,19 @@ import { ExpeditionComponent } from './expedition/expedition.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './login/auth.interceptor';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { FisherComponent } from './fisher/profile/fisher.component';
+import { FisherDashboardComponent } from './fisher/dashboard/fisher-dashboard.component';
+import { NavbarComponent } from './global-components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    ExpeditionComponent
+    ExpeditionComponent,
+    FisherComponent,
+    FisherDashboardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { ExpeditionList } from '../actions/expedition-list';
 @Injectable({
   providedIn: 'root',
 })
+
 export class ExpeditionsService {
   private baseURL = 'http://localhost:8080/eco_system/expedition-oprs';
   constructor(private httpClient: HttpClient) {}

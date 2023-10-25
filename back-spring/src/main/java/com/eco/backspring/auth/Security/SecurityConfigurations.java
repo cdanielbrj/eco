@@ -44,6 +44,16 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/eco_system/expedition").permitAll()
                         // Exclui uma expedição - admin only //
                         .requestMatchers(HttpMethod.DELETE, "/eco_system/expedition-oprs/**").hasRole("ADMIN")
+                        // Lista todas as expedições - all users //
+                        .requestMatchers(HttpMethod.GET, "/eco_system/fisher-oprs").permitAll()
+                        // Lista uma expedição - all users //
+                        .requestMatchers(HttpMethod.GET, "/eco_system/fisher-oprs/**").permitAll()
+                        // Atualiza uma expedição - all users //
+                        .requestMatchers(HttpMethod.PUT, "/eco_system/fisher-oprs/**").permitAll()
+                        // Cria uma expedição - all users //
+                        .requestMatchers(HttpMethod.POST, "/eco_system/fisher-oprs").permitAll()
+                        // Exclui uma expedição - admin only //
+                        .requestMatchers(HttpMethod.DELETE, "/eco_system/fisher-oprs/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
