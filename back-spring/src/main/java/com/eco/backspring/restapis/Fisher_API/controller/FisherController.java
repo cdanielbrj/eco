@@ -1,5 +1,6 @@
 package com.eco.backspring.restapis.Fisher_API.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -42,8 +43,9 @@ public class FisherController {
     }
 
     @PostMapping
-    public void salvar(@RequestBody Fisher fisher) {
-        repository.save(fisher);
+    public ResponseEntity<Fisher> salvar(@RequestBody Fisher fisher) {
+        Fisher savedFisher = repository.save(fisher);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedFisher);
     }
 
     @DeleteMapping("/{id}")
