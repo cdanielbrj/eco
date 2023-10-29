@@ -1,5 +1,7 @@
 package com.eco.backspring.restapis.Ship_API.controller;
 
+import com.eco.backspring.restapis.Expedition_API.entity.Expedition;
+import com.eco.backspring.restapis.Expedition_API.repository.ExpeditionRepository;
 import com.eco.backspring.restapis.Fisher_API.entity.Fisher;
 import com.eco.backspring.restapis.Fisher_API.repository.FisherRepository;
 import com.eco.backspring.restapis.Ship_API.DTO.ShipDTO;
@@ -20,14 +22,31 @@ import java.util.stream.Collectors;
 @RequestMapping("/eco_system/ship-oprs")
 public class ShipController {
 
-    @Autowired
-    private ShipRepository shipRepository;
+//    @Autowired
+//    private ShipRepository shipRepository;
+//
+//    @Autowired
+//    private ShipMapper shipMapper;
+//
+//    @Autowired
+//    private FisherRepository fisherRepository;
+
+    private final ShipRepository shipRepository;
+    private final ShipMapper shipMapper;
+    private final FisherRepository fisherRepository;
+    private final ExpeditionRepository expeditionRepository;
 
     @Autowired
-    private ShipMapper shipMapper;
-
-    @Autowired
-    private FisherRepository fisherRepository;
+    public ShipController(
+            ShipRepository shipRepository,
+            ShipMapper shipMapper,
+            FisherRepository fisherRepository,
+            ExpeditionRepository expeditionRepository ){
+        this.shipRepository = shipRepository;
+        this.shipMapper = shipMapper;
+        this.fisherRepository = fisherRepository;
+        this.expeditionRepository = expeditionRepository;
+    }
 
     @GetMapping
     public List<ShipDTO> getAllShips() {
@@ -129,6 +148,12 @@ public class ShipController {
     public ResponseEntity<Void> deleteShip(@PathVariable Long id) {
         if (!shipRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
+        }
+        // Desassociar o Ship de todos os registros Expedition que o referenciam
+        List<Expedition> expeditions = expeditionRepository.findByShipId(id);
+        for (Expedition expedition : expeditions) {
+            expedition.setShip(null);
+            expeditionRepository.save(expedition);
         }
         shipRepository.deleteById(id);
         return ResponseEntity.noContent().build();

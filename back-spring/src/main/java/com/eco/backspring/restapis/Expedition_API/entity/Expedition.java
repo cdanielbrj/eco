@@ -20,11 +20,11 @@ public class Expedition {
     private String hora_inicio;
 
     @ManyToOne
-    @JoinColumn(name = "local_id")
+    @JoinColumn(name = "local_id", nullable = true)
     private Local local;
 
     @ManyToOne
-    @JoinColumn(name = "ship_id")
+    @JoinColumn(name = "ship_id", nullable = true)
     private Ship ship;
 
     public void setId(Long id) {
