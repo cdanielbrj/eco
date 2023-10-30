@@ -52,7 +52,7 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.PUT, "/eco_system/fisher-oprs/**").permitAll()
                         // Cria uma expedição - all users //
                         .requestMatchers(HttpMethod.POST, "/eco_system/fisher-oprs").permitAll()
-                        // Exclui uma expedição - admin only //
+                        // Exclui uma pescador - admin only //
                         .requestMatchers(HttpMethod.DELETE, "/eco_system/fisher-oprs/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )

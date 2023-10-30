@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import com.eco.backspring.restapis.Local_API.entity.Local;
 import com.eco.backspring.restapis.Ship_API.entity.Ship;
+import com.eco.backspring.restapis.Trash_API.entity.Trash;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -27,6 +31,14 @@ public class Expedition {
     @JoinColumn(name = "ship_id", nullable = true)
     private Ship ship;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "expedition_trash",
+            joinColumns = @JoinColumn(name = "expedition_id"),
+            inverseJoinColumns = @JoinColumn(name = "trash_id")
+    )
+    private List<Trash> trashes = new ArrayList<>();
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -45,5 +57,13 @@ public class Expedition {
 
     public void setShip(Ship ship) {
         this.ship = ship;
+    }
+
+    public void setTrashes(List<Trash> trashes) {
+        if (trashes != null) {
+            this.trashes = trashes;
+        } else {
+            this.trashes = new ArrayList<>();
+        }
     }
 }

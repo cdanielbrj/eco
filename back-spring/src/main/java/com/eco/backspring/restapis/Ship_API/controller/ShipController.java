@@ -22,15 +22,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/eco_system/ship-oprs")
 public class ShipController {
 
-//    @Autowired
-//    private ShipRepository shipRepository;
-//
-//    @Autowired
-//    private ShipMapper shipMapper;
-//
-//    @Autowired
-//    private FisherRepository fisherRepository;
-
     private final ShipRepository shipRepository;
     private final ShipMapper shipMapper;
     private final FisherRepository fisherRepository;
