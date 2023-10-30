@@ -14,6 +14,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { FisherComponent } from './fisher/profile/fisher.component';
 import { FisherDashboardComponent } from './fisher/dashboard/fisher-dashboard.component';
 import { NavbarComponent } from './global-components/navbar/navbar.component';
+import { UsersComponent } from './users/profile/users.component';
+import { UserDashboardComponent } from './users/dashboard/user-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { NavbarComponent } from './global-components/navbar/navbar.component';
     ExpeditionComponent,
     FisherComponent,
     FisherDashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    UsersComponent,
+    UserDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,7 @@ import { NavbarComponent } from './global-components/navbar/navbar.component';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
-  
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
