@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { ExpeditionList } from '../actions/expedition-list';
+import {ExpeditionDetails, ExpeditionList} from '../actions/expedition-list';
 import { ExpeditionsService } from '../actions/expeditions.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  expeditions: ExpeditionList[] = [];
+  expeditions: ExpeditionDetails[] = [];
 
   constructor(
     private expeditionsService: ExpeditionsService,

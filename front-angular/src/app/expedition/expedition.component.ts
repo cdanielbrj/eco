@@ -33,17 +33,17 @@ export class ExpeditionComponent implements OnInit {
     let id = null;
     let data = null;
     let hora_inicio = null;
-    let bolsista = null;
-    let barco = null;
-    let local_coleta = null;
+    let user_id = null;
+    let ship_id = null;
+    let local_id = null;
 
     this.expeditionForm = new FormGroup({
       id: new FormControl(id),
       data: new FormControl(data),
       hora_inicio: new FormControl(hora_inicio),
-      bolsista: new FormControl(bolsista),
-      barco: new FormControl(barco),
-      local_coleta: new FormControl(local_coleta),
+      user_id: new FormControl(user_id),
+      ship_id: new FormControl(ship_id),
+      local_id: new FormControl(local_id),
     });
   }
 
@@ -55,9 +55,9 @@ export class ExpeditionComponent implements OnInit {
         id: expedition.id,
         data: expedition.data,
         hora_inicio: expedition.hora_inicio,
-        bolsista: expedition.bolsista,
-        barco: expedition.barco,
-        local_coleta: expedition.local_coleta,
+        user_id: expedition.user_id,
+        ship_id: expedition.ship_id,
+        local_id: expedition.local_id,
       });
     });
   }
@@ -69,7 +69,7 @@ export class ExpeditionComponent implements OnInit {
         this.expeditionForm.value
       ).subscribe((response) => {
         console.log('Expedição atualizada com sucesso!');
-        this.router.navigate(['/dashboard']);        
+        this.router.navigate(['/dashboard']);
       });
     } else {
       this.ExpeditionsService.postExpeditionLists(this.expeditionForm.value);

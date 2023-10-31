@@ -34,6 +34,7 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/eco_system/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/eco_system/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/eco_system/auth/user/**").permitAll()
                         // Lista todas as expedições - all users //
                         .requestMatchers(HttpMethod.GET, "/eco_system/expedition-oprs").permitAll()
                         // Lista uma expedição - all users //

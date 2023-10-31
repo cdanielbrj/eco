@@ -1,5 +1,6 @@
 package com.eco.backspring.restapis.User_API.controller;
 
+import com.eco.backspring.restapis.Fisher_API.entity.Fisher;
 import com.eco.backspring.restapis.User_API.DTO.AuthenticationDTO;
 import com.eco.backspring.restapis.User_API.DTO.LoginResponseDTO;
 import com.eco.backspring.restapis.User_API.DTO.RegisterDTO;
@@ -14,6 +15,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -31,6 +33,18 @@ public class UserController {
         this.repository = repository;
         this.authenticationManager = authenticationManager;
         this.tokenService = tokenService;
+    }
+
+    @GetMapping("/user/list")
+    public List<User> listar() {
+        return repository.findAll();
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable String id) {
+        Optional<User> userOptional = repository.findById(id);
+
+        return userOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/login")
@@ -54,7 +68,7 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/user/{id}")
     public ResponseEntity<?> updateUser(@PathVariable String id, @RequestBody UpdateDTO updateData) {
         // Validação para encontrar primeiro
         Optional<User> optionalUser = repository.findById(id);
@@ -71,7 +85,7 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/user/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable String id) {
         if (!repository.existsById(id)) {
             return ResponseEntity.notFound().build();

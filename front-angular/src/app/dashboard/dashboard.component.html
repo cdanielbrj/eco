@@ -22,7 +22,7 @@
         </thead>
         <tbody>
           <!-- Linha Modelo -->
-          <tr *ngFor="let ExpeditionList of expeditions">
+          <tr *ngFor="let expedition of expeditions">
             <!-- Status -->
             <td>
               <div class="ms-3">
@@ -33,28 +33,28 @@
             <!-- Bolsista -->
             <td>
               <div class="d-flex align-items-center">
-                <p class="fw-normal mb-1">{{ ExpeditionList.bolsista }}</p>
+                <p class="fw-normal mb-1">{{ expedition.userNome }}</p>
               </div>
             </td>
 
             <!-- Data -->
             <td>
-              <p class="fw-normal mb-1">{{ ExpeditionList.data }}</p>
+              <p class="fw-normal mb-1">{{ expedition.data }}</p>
             </td>
 
             <!-- Hora -->
             <td>
-              <p class="fw-normal mb-1">{{ ExpeditionList.hora_inicio }}</p>
+              <p class="fw-normal mb-1">{{ expedition.hora_inicio }}</p>
             </td>
 
             <!-- Local de Coleta -->
             <td>
-              <p class="fw-normal mb-1">{{ ExpeditionList.local_coleta }}</p>
+              <p class="fw-normal mb-1">{{ expedition.localNome }}</p>
             </td>
 
             <!-- Embarcação -->
             <td>
-              <p class="fw-normal mb-1">{{ ExpeditionList.barco }}</p>
+              <p class="fw-normal mb-1">{{ expedition.shipNome }}</p>
             </td>
 
             <!-- Status -->
@@ -63,7 +63,7 @@
                 type="button"
                 class="btn btn-warning btn-md"
                 style="margin-right: 20px"
-                (click)="editExpedition(ExpeditionList.id)"
+                (click)="editExpedition(expedition.id)"
               >
                 Editar
               </button>
@@ -78,7 +78,7 @@
                 type="button"
                 class="btn btn-danger btn-md"
                 (click)="
-                  openDeleteModal(deleteConfirmationModal, ExpeditionList.id)
+                  openDeleteModal(deleteConfirmationModal, expedition.id)
                 "
               >
                 Excluir
