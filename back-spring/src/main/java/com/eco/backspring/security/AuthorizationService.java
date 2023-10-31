@@ -1,6 +1,6 @@
-package com.eco.backspring.auth.Users.service;
+package com.eco.backspring.security;
 
-import com.eco.backspring.auth.Users.repository.UserRepository;
+import com.eco.backspring.restapis.User_API.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

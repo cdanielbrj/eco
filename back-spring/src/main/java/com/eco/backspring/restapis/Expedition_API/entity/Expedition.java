@@ -2,6 +2,7 @@ package com.eco.backspring.restapis.Expedition_API.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import com.eco.backspring.restapis.User_API.entity.User;
 import com.eco.backspring.restapis.Local_API.entity.Local;
 import com.eco.backspring.restapis.Ship_API.entity.Ship;
 import com.eco.backspring.restapis.Trash_API.entity.Trash;
@@ -31,6 +32,10 @@ public class Expedition {
     @JoinColumn(name = "ship_id", nullable = true)
     private Ship ship;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    private User user;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "expedition_trash",
@@ -51,12 +56,16 @@ public class Expedition {
         this.hora_inicio = hora_inicio;
     }
 
-    public void setLocal(Local local) {
-        this.local = local;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setShip(Ship ship) {
         this.ship = ship;
+    }
+
+    public void setLocal(Local local) {
+        this.local = local;
     }
 
     public void setTrashes(List<Trash> trashes) {

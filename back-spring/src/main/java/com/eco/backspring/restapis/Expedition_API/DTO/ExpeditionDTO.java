@@ -8,6 +8,7 @@ public record ExpeditionDTO(
         String hora_inicio,
         Long local_id,
         Long ship_id,
+        String user_id,
         List<Long> trashIds
 ) {
     public ExpeditionDTO {

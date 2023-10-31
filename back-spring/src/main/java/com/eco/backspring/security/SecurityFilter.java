@@ -1,15 +1,12 @@
-package com.eco.backspring.auth.Security;
+package com.eco.backspring.security;
 
-import com.eco.backspring.auth.Users.repository.UserRepository;
-import com.eco.backspring.auth.Users.service.TokenService;
+import com.eco.backspring.restapis.User_API.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;

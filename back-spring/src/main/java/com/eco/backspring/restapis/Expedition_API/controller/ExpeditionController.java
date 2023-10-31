@@ -10,6 +10,8 @@ import com.eco.backspring.restapis.Ship_API.entity.Ship;
 import com.eco.backspring.restapis.Ship_API.repository.ShipRepository;
 import com.eco.backspring.restapis.Trash_API.entity.Trash;
 import com.eco.backspring.restapis.Trash_API.repository.TrashRepository;
+import com.eco.backspring.restapis.User_API.entity.User;
+import com.eco.backspring.restapis.User_API.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,7 @@ public class ExpeditionController {
 
     private final ExpeditionRepository expeditionRepository;
     private final LocalRepository localRepository;
+    private final UserRepository userRepository;
     private final ShipRepository shipRepository;
     private final TrashRepository trashRepository;
 
@@ -31,11 +34,13 @@ public class ExpeditionController {
             ExpeditionRepository expeditionRepository,
             LocalRepository localRepository,
             ShipRepository shipRepository,
-            TrashRepository trashRepository) {
+            TrashRepository trashRepository,
+            UserRepository userRepository ) {
         this.expeditionRepository = expeditionRepository;
         this.localRepository = localRepository;
         this.shipRepository = shipRepository;
         this.trashRepository = trashRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping
@@ -69,6 +74,9 @@ public class ExpeditionController {
         Ship ship = shipRepository.findById(expeditionDTO.ship_id())
                 .orElseThrow(() -> new RuntimeException("Embarcação não encontrada"));
 
+        User user = userRepository.findById(expeditionDTO.user_id())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
         // Agora buscamos uma lista de Trash pelo ID
         List<Trash> trashes = trashRepository.findAllById(expeditionDTO.trashIds());
 
@@ -78,7 +86,7 @@ public class ExpeditionController {
         }
 
         // Atualize o mapper para aceitar a lista de trashes
-        Expedition atualizar = ExpeditionMapper.toEntity(expeditionDTO, local, ship, trashes);
+        Expedition atualizar = ExpeditionMapper.toEntity(expeditionDTO, local, ship, user, trashes);
         atualizar.setId(id);
 
         expeditionRepository.save(atualizar);
@@ -94,12 +102,15 @@ public class ExpeditionController {
         Ship ship = shipRepository.findById(expeditionDTO.ship_id())
                 .orElseThrow(() -> new RuntimeException("Embarcação não encontrada"));
 
+        User user = userRepository.findById(expeditionDTO.user_id())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
         List<Trash> trashes = trashRepository.findAllById(expeditionDTO.trashIds());
         if(trashes.size() != expeditionDTO.trashIds().size()) {
             throw new RuntimeException("Um ou mais tipos de lixo não foram encontrados");
         }
 
-        Expedition expedition = ExpeditionMapper.toEntity(expeditionDTO, local, ship, trashes);
+        Expedition expedition = ExpeditionMapper.toEntity(expeditionDTO, local, ship, user, trashes);
         expeditionRepository.save(expedition);
 
         return ResponseEntity.ok(ExpeditionMapper.toDTO(expedition));

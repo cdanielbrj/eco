@@ -61,35 +61,29 @@ public class ShipController {
     @PostMapping
     public ResponseEntity<Object> createShip(@RequestBody ShipDTO shipDTO) {
         Ship ship = shipMapper.toEntity(shipDTO, null);
-        System.out.println("Owner Fisher ID: " + shipDTO.ownerFisherId());
-        // Associando os pescadores ao barco com base nos IDs
         if (shipDTO.ownerFisherId() != null) {
             if(isFisherAssignedAsOwner(shipDTO.ownerFisherId()) || isFisherAssignedAsPartner(shipDTO.ownerFisherId())) {
-                return ResponseEntity.badRequest().body("Owner fisher is already assigned to another ship.");
+                return ResponseEntity.badRequest().body("O pescador dono já está associado com um barco.");
             }
-
             Optional<Fisher> ownerFisherOptional = fisherRepository.findById(shipDTO.ownerFisherId());
             if (ownerFisherOptional.isPresent()) {
                 ship.setOwnerFisher(ownerFisherOptional.get());
             } else {
-                return ResponseEntity.badRequest().body("Owner fisher not found.");
+                return ResponseEntity.badRequest().body("Pescador dono não encontrado.");
             }
         }
-        System.out.println("Owner Fisher ID: " + shipDTO.ownerFisherId());
-        System.out.println("Partner Fisher ID: " + shipDTO.partnerFisherId());
+
         if (shipDTO.partnerFisherId() != null) {
             if(isFisherAssignedAsOwner(shipDTO.partnerFisherId()) || isFisherAssignedAsPartner(shipDTO.partnerFisherId())) {
-                return ResponseEntity.badRequest().body("Partner fisher is already assigned to another ship.");
+                return ResponseEntity.badRequest().body("O pescador parceiro já está associado com um barco.");
             }
-
             Optional<Fisher> partnerFisherOptional = fisherRepository.findById(shipDTO.partnerFisherId());
             if (partnerFisherOptional.isPresent()) {
                 ship.setPartnerFisher(partnerFisherOptional.get());
             } else {
-                return ResponseEntity.badRequest().body("Partner fisher not found.");
+                return ResponseEntity.badRequest().body("Pescador parceiro não encontrado.");
             }
         }
-        System.out.println("Partner Fisher ID: " + shipDTO.partnerFisherId());
         Ship savedShip = shipRepository.save(ship);
         return ResponseEntity.status(HttpStatus.CREATED).body(shipMapper.toDTO(savedShip));
     }
@@ -100,37 +94,29 @@ public class ShipController {
         if (shipOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-
         Ship existingShip = shipOptional.get();
         shipMapper.toEntity(shipDTO, existingShip); // Popula os detalhes atualizados
-
-        // Associando os pescadores ao barco com base nos IDs
         if (shipDTO.ownerFisherId() != null) {
             Long existingOwnerId = (existingShip.getOwnerFisher() != null) ? existingShip.getOwnerFisher().getId() : null;
-
             if ((existingOwnerId == null || !shipDTO.ownerFisherId().equals(existingOwnerId))
                     && (isFisherAssignedAsOwner(shipDTO.ownerFisherId())
                     || isFisherAssignedAsPartner(shipDTO.ownerFisherId()))) {
-                return ResponseEntity.badRequest().body("Owner fisher is already assigned to another ship.");
+                return ResponseEntity.badRequest().body("O pescador dono já está associado com um barco.");
             }
-
             Optional<Fisher> ownerFisherOptional = fisherRepository.findById(shipDTO.ownerFisherId());
             ownerFisherOptional.ifPresent(existingShip::setOwnerFisher);
         }
 
         if (shipDTO.partnerFisherId() != null) {
             Long existingPartnerId = (existingShip.getPartnerFisher() != null) ? existingShip.getPartnerFisher().getId() : null;
-
             if ((existingPartnerId == null || !shipDTO.partnerFisherId().equals(existingPartnerId))
                     && (isFisherAssignedAsPartner(shipDTO.partnerFisherId())
                     || isFisherAssignedAsOwner(shipDTO.partnerFisherId()))) {
-                return ResponseEntity.badRequest().body("Partner fisher is already assigned to another ship.");
+                return ResponseEntity.badRequest().body("O pescador parceiro já está associado com um barco.");
             }
-
             Optional<Fisher> partnerFisherOptional = fisherRepository.findById(shipDTO.partnerFisherId());
             partnerFisherOptional.ifPresent(existingShip::setPartnerFisher);
         }
-
         Ship updatedShip = shipRepository.save(existingShip);
         return ResponseEntity.ok(shipMapper.toDTO(updatedShip));
     }

@@ -4,12 +4,18 @@ import com.eco.backspring.restapis.Expedition_API.entity.Expedition;
 import com.eco.backspring.restapis.Local_API.entity.Local;
 import com.eco.backspring.restapis.Ship_API.entity.Ship;
 import com.eco.backspring.restapis.Trash_API.entity.Trash;
+import com.eco.backspring.restapis.User_API.entity.User;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ExpeditionMapper {
-    public static Expedition toEntity(ExpeditionDTO dto, Local local, Ship ship, List<Trash> trashes){
+    public static Expedition toEntity(
+            ExpeditionDTO dto,
+            Local local,
+            Ship ship,
+            User user,
+            List<Trash> trashes){
         Expedition expedition = new Expedition();
 
         expedition.setId(dto.id());
@@ -17,6 +23,7 @@ public class ExpeditionMapper {
         expedition.setHora_inicio(dto.hora_inicio());
         expedition.setLocal(local);
         expedition.setShip(ship);
+        expedition.setUser(user);
         expedition.setTrashes(trashes);
 
         return expedition;
@@ -32,6 +39,7 @@ public class ExpeditionMapper {
                 expedition.getHora_inicio(),
                 expedition.getLocal().getId(),
                 expedition.getShip().getId(),
+                expedition.getUser().getId(),
                 trashIds
         );
     }
