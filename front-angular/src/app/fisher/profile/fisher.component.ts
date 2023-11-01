@@ -41,7 +41,7 @@ export class FisherComponent implements OnInit {
       nome: new FormControl(nome),
       contato: new FormControl(contato),
       local_coleta: new FormControl(local_coleta),
-      barco: new FormControl(barco),      
+      barco: new FormControl(barco),
     });
   }
 
@@ -54,19 +54,19 @@ export class FisherComponent implements OnInit {
         nome: fisher.nome,
         contato: fisher.contato,
         local_coleta: fisher.local_coleta,
-        barco: fisher.barco,        
+        barco: fisher.barco,
       });
     });
   }
 
-  // Enviando a expedição
+  // Enviando os dados do pescador
   onSubmit() {
     if (this.fisherForm.value.id) {
       this.FisherService.updateFisher(
         this.fisherForm.value
       ).subscribe((response) => {
         console.log('Perfil atualizado com sucesso!');
-        this.router.navigate(['/fisher/list']);        
+        this.router.navigate(['/fisher/list']);
       });
     } else {
       this.FisherService.postFisherLists(this.fisherForm.value);

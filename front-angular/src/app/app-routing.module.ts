@@ -19,7 +19,8 @@ const routes: Routes = [
   { path: 'fisher/edit/:id', component: FisherComponent },
   { path: 'fisher/list', component: FisherDashboardComponent },
   { path: 'user/list', component: UserDashboardComponent },
-  { path: 'user', component: UsersComponent }
+  { path: 'user', component: UsersComponent },
+  { path: 'user/edit/:id', component: UsersComponent }
 ];
 
 @NgModule({

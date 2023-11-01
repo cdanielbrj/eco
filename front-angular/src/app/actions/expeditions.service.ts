@@ -20,7 +20,7 @@ export class ExpeditionsService {
   ) {}
 
   /* Listando todas as expedições */
-  getExpeditionLists(): Observable<ExpeditionDetails[]> {
+  getExpeditionLists(): Observable<ExpeditionList[]> {
     return this.httpClient.get<ExpeditionList[]>(this.baseURL).pipe(
       switchMap((expeditions) => {
         console.log('expeditions:', expeditions);

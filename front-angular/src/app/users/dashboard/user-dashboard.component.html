@@ -5,7 +5,7 @@
 <div class="content">
   <div class="container" style="margin-top: 70px">
     <div class="row">
-      <div class="col-12 col-md-3">
+      <div class="col-12 col-md-3" *ngFor="let UserList of users">
         <div class="text-center card-box">
           <div class="member-card pt-2 pb-2">
             <div class="thumb-lg member-thumb mx-auto">
@@ -16,17 +16,21 @@
               />
             </div>
             <div class="profile-info" style="margin-top: 1rem">
+              <h4>{{ UserList.nome }}</h4>
+              <p class="text-muted">@{{ UserList.role }}</p>
             </div>
             <button
               type="button"
               class="btn btn-info mt-3"
               style="margin-right: 10px"
+              (click)="editUser(UserList.id)"
             >
               Editar
             </button>
             <button
               type="button"
               class="btn btn-danger mt-3"
+              (click)="openDeleteModal(deleteConfirmationModal, UserList)"
             >
               Excluir
             </button>
@@ -44,21 +48,23 @@
           type="button"
           class="btn-close"
           aria-label="Close"
+          (click)="modalRef?.hide()"
         ></button>
       </div>
       <div class="modal-body">
         <p>
-          Você tem certeza que deseja excluir o perfil de?
+          Você tem certeza que deseja excluir o perfil de {{ selectedUser?.nome }}?
         </p>
       </div>
       <div class="modal-footer">
         <button
           type="button"
           class="btn btn-secondary"
+          (click)="modalRef?.hide()"
         >
           Cancelar
         </button>
-        <button type="button" class="btn btn-danger">
+        <button type="button" class="btn btn-danger" (click)="confirmDelete()">
           Excluir
         </button>
       </div>
