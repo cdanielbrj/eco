@@ -54,7 +54,7 @@ a {
   background: #fff;
   position: absolute;
   bottom: -175px;
-  left: -46px;
+  left: -55px;
   transform: rotate(-85deg)
 }
 
@@ -219,7 +219,7 @@ a {
     width: 280px;
     height: 200px;
     top: 220px;
-    left: -46px
+    left: -55px
   }
 
   .colunaCat .title:after {
