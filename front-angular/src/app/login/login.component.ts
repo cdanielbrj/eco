@@ -36,7 +36,7 @@ export class LoginComponent {
         const token = response.token;
         sessionStorage.setItem('auth_token', token);
 
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/main']);
       },
 
       error => {
