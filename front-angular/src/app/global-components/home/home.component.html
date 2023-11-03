@@ -1,0 +1,108 @@
+<header>
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
+</header>
+<div class="video-background">
+  <video autoplay loop muted playsinline class="background-video">
+    <source src="assets/gif/background.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="demo">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 pb-4">
+        <div class="colunaCat">
+          <h3 class="title">Expedições</h3>
+          <div class="category-value">
+            <a href="javascript:void(0)">
+              <img
+                src="assets/icons/map.svg"
+                height="60"
+                alt="Person Icon"
+                loading="lazy"
+              />
+            </a>
+          </div>
+          <div class="d-flex justify-content-center" style="padding: 0 30px">
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+          </div>
+          <a href="/expedition" class="colunaCat-signup align-items-center" style="margin: 10px 30px 0 0; width: 35%">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+            </svg>
+            <h6 class="d-flex justify-content-center">Cadastrar</h6>
+          </a>
+          <a href="/dashboard" class="colunaCat-signup" style="width: 35%">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+              <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+              <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+            </svg>
+            <h6 class="d-flex justify-content-center">Listar</h6>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 pb-4">
+        <div class="colunaCat blue">
+          <h3 class="title">Usuários</h3>
+          <div class="category-value">
+            <a href="javascript:void(0)">
+            <img
+              src="assets/icons/people.svg"
+              height="60"
+              alt="Person Icon"
+              loading="lazy"
+            />
+          </a>
+          </div>
+          <div class="d-flex justify-content-center" style="padding: 0 30px">
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+          </div>
+          <a href="/user" class="colunaCat-signup" style="margin: 10px 30px 0 0; width: 35%">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+            </svg>
+            <h6 class="d-flex justify-content-center">Cadastrar</h6>
+          </a>
+          <a href="/user/list" class="colunaCat-signup" style="width: 35%">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+              <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+              <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+            </svg>
+            <h6 class="d-flex justify-content-center">Listar</h6>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 pb-2">
+        <div class="colunaCat green">
+          <h3 class="title">Embarcações</h3>
+          <div class="category-value">
+            <a href="javascript:void(0)">
+              <img
+                src="assets/icons/yacht.png"
+                height="70"
+                alt="Boat Icon"
+                loading="lazy"
+              />
+            </a>
+          </div>
+          <div class="d-flex justify-content-center" style="padding: 0 30px">
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+          </div>
+          <a href="javascript:void(0)" class="colunaCat-signup" style="margin: 10px 30px 0 0; width: 35%">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+            </svg>
+            <h6 class="d-flex justify-content-center">Cadastrar</h6>
+          </a>
+          <a href="javascript:void(0)" class="colunaCat-signup" style="width: 35%">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+              <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+              <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+            </svg>
+            <h6 class="d-flex justify-content-center">Listar</h6>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

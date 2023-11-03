@@ -5,69 +5,150 @@
 <div class="content">
   <div class="container" style="margin-top: 70px">
     <div class="row">
-      <div class="col-12 col-md-3" *ngFor="let FisherList of fishers">
-        <div class="text-center card-box">
-          <div class="member-card pt-2 pb-2">
-            <div class="thumb-lg member-thumb mx-auto">
-              <img
-                src="https://bootdey.com/img/Content/avatar/avatar2.png"
-                class="rounded-circle img-thumbnail"
-                alt="profile-image"
-              />
+      <div class="col-xl-3 col-sm-6" *ngFor="let FisherList of fishers">
+        <div class="card">
+          <div class="card-body">
+            <div class="dropdown float-end">
+              <a class="disc" href="javascript:void(0)" style="color: black"
+                 (click)="openDeleteModal(deleteConfirmationModal, FisherList)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                </svg>
+              </a>
             </div>
-            <div class="profile-info" style="margin-top: 1rem">
-              <h4>{{ FisherList.nome }}</h4>
-              <p class="text-muted">@{{ FisherList.barco }}</p>
+            <div class="d-flex align-items-center">
+              <div class="flex-1">
+                <h5 class="font-size-16 mb-1"><a href="#" class="text-dark">{{ FisherList.nome }}</a></h5>
+                <span class="badge badge-soft-success mb-0">Pescador Ativo</span>
+              </div>
             </div>
+            <div class="mt-3 pt-1">
+              <p class="text-muted mb-0">{{ FisherList.contato }}</p>
+            </div>
+            <div class="d-flex gap-2 pt-4">
+              <button type="button" class="btn btn-outline-info btn-sm w-50" (click)="openInfoModal(FisherList, infoModal)">
+                Editar
+              </button>
+              <button type="button" class="btn btn-outline-secondary btn-sm w-50">Histórico</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Novo Pescador -->
+      <div class="col-xl-3 col-sm-6 d-flex align-items-center justify-content-center">
+        <div class="card ">
+          <div class="card-body translucent">
+            <div class="d-flex align-items-center">
+              <div class="align-items-center">
+                <h5 class="font-size-16 mb-1"><a class="text-dark">Novo Pescador?</a></h5>
+                <div class="d-flex justify-content-center">
+                  <a class="disc" href="javascript:void(0)" (click)="openInfoModal(null, infoModal)" style="color: black">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                      <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                      <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Delete -->
+      <ng-template #deleteConfirmationModal>
+        <div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Confirmar Exclusão</h5>
             <button
               type="button"
-              class="btn btn-info mt-3"
-              style="margin-right: 10px"
-              (click)="editFisher(FisherList.id)"
+              class="btn-close"
+              aria-label="Close"
+              (click)="modalRef?.hide()"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Você tem certeza que deseja excluir o perfil de {{ selectedFisher?.nome }}?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="modalRef?.hide()"
             >
-              Editar
+              Cancelar
             </button>
-            <button
-              type="button"
-              class="btn btn-danger mt-3"
-              (click)="openDeleteModal(deleteConfirmationModal, FisherList)"
-            >
+            <button type="button" class="btn btn-danger" (click)="confirmDelete()">
               Excluir
             </button>
           </div>
         </div>
-      </div>
-      <!-- end col -->
-  <!-- container -->
+      </ng-template>
 
-  <ng-template #deleteConfirmationModal>
-    <div>
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Confirmar Exclusão</h5>
-        <button
-          type="button"
-          class="btn-close"
-          aria-label="Close"
-          (click)="modalRef?.hide()"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <p>
-          Você tem certeza que deseja excluir o perfil de {{ selectedFisher?.nome }}?
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          (click)="modalRef?.hide()"
-        >
-          Cancelar
-        </button>
-        <button type="button" class="btn btn-danger" (click)="confirmDelete()">
-          Excluir
-        </button>
-      </div>
+      <!-- Novo Pescador -->
+      <ng-template #infoModal>
+        <div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="createModalLabel">Cadastrar novo pescador</h5>
+            <h5 class="modal-title" id="editModalLabel" *ngIf="isEditMode">Editar pescador</h5>
+            <button
+              type="button"
+              class="btn-close"
+              aria-label="Close"
+              (click)="modalRef?.hide()"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="fisherForm" (ngSubmit)="onSubmit()">
+              <div class="row pt-1">
+                <div class="col-6 mb-3">
+                  <h6>Nome</h6>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nome"
+                    name="nome"
+                    formControlName="nome"
+                    placeholder="Nome"
+                  />
+                </div>
+                <div class="col-6 mb-3">
+                  <h6>Contato</h6>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="contato"
+                    name="contato"
+                    formControlName="contato"
+                    placeholder="Contato"
+                  />
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="submit"
+                  class="btn btn-outline-primary fisher"
+                  *ngIf="!isEditMode"
+                >
+                  Criar Pescador
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-outline-warning fisher"
+                  *ngIf="isEditMode"
+                >
+                  Atualizar Pescador
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </ng-template>
     </div>
-  </ng-template>
+  </div>
 </div>

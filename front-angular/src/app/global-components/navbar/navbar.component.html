@@ -1,166 +1,31 @@
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container py-4 h-100">
-      <!-- Logo -->
-      <a class="navbar-brand" href="#">
-        <img
-          src="assets/images/logo-icon.svg"
-          height="55"
-          alt="Eco Logo"
-          loading="lazy"
-        />
-      </a>
-
-      <!-- Menu -->
-      <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle fs-6"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            >Expedição</a
-          >
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="/expedition"
-                >Iniciar nova expedição</a
-              >
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li>
-              <a class="dropdown-item" href="/dashboard">Listagem de expedições</a>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Finalizar uma expedição</a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            >Usuários</a
-          >
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="/user">Criar o perfil de um novo(a) usuário(a)</a>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li>
-              <a class="dropdown-item" href="/user/list">Listar os perfis dos(as) usuários(as)</a>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Excluir o perfil de um(a) usuário(a)</a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            >Embarcação</a
-          >
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="#">Cadastrar nova embarcação</a>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Atualizar uma embarcação</a>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Suspender uma embarcação</a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            >Pescadores</a
-          >
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="/fisher">Cadastrar um(a) novo(a) pescador(a)</a>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li>
-              <a class="dropdown-item" href="/fisher/list">Listagem de pescadores(as)</a>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Suspender um(a) pescador(a)</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-
-      <!-- Configurações -->
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              src="assets/images/gear.svg"
-              height="25"
-              alt="Ícone de Configurações"
-              loading="lazy"
-            />
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="#">Cadastrar usuário</a>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Editar usuário</a>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Sair do sistema</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+  <div class="container container-fluid py-4 h-100">
+    <a class="navbar-brand" href="#">
+      <img
+        src="assets/images/logo-icon.svg"
+        height="55"
+        alt="Eco Logo"
+        loading="lazy"
+      />
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard">Expedições</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/list">Usuários</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)">Embarcações</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/fisher/list">Pescadores</a>
+      </li>
+    </ul>
     </div>
-  </nav>
-  <!-- Navbar -->
+  </div>
+</nav>

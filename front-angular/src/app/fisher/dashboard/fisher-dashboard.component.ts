@@ -1,8 +1,9 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FisherList } from '../services/fisher-list';
 import { FisherService } from '../services/fisher.service';
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-fisher-dashboard',
@@ -11,32 +12,31 @@ import { FisherService } from '../services/fisher.service';
 })
 export class FisherDashboardComponent implements OnInit {
   fishers: FisherList[] = [];
+  fisherForm!: FormGroup;
+  isEditMode: boolean = false;
 
   constructor(
-    private fisherService: FisherService,
+    private FisherService: FisherService,
     private modalService: BsModalService,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   // --------------------------------- GET ---------------------------------
   // Listagem dos perfis automática
   ngOnInit(): void {
-    this.getFishers();
-    console.log('Perfis carregados com sucesso');
     this.fetchFishers();
-    console.log('Novos perfis carregados com sucesso');
-  }
-
-  // Função de Listar
-  private getFishers() {
-    this.fisherService.getFisherLists().subscribe((data) => {
-      this.fishers = data;
+    console.log('Perfis carregados com sucesso');
+    this.initForm();
+    this.route.params.subscribe((params) => {
+      if (params['id']) {
+        this.loadFisherDetails(params['id']);
+      }
     });
   }
 
-  // Atualizar listagem
+  // Função de Listar
   fetchFishers(): void {
-    this.fisherService.getFisherLists().subscribe(
+    this.FisherService.getFisherLists().subscribe(
       (fishers) => {
         this.fishers = fishers;
       },
@@ -46,12 +46,65 @@ export class FisherDashboardComponent implements OnInit {
     );
   }
 
+  // Criando o perfil do pescador
+  openInfoModal(fisher: FisherList | null, infoModal: TemplateRef<any>): void {
+    this.fisherForm.reset();
+    if (fisher) {
+      this.isEditMode = true;
+      this.fisherForm.setValue({
+        id: fisher.id,
+        nome: fisher.nome,
+        contato: fisher.contato,
+      });
+    } else {
+      this.isEditMode = false;
+    }
+    this.modalRef = this.modalService.show(infoModal);
+  }
+
+  initForm() {
+    this.fisherForm = new FormGroup({
+      id: new FormControl(null),
+      nome: new FormControl(null),
+      contato: new FormControl(null),
+    });
+  }
+
+  // Editando o perfil do pescador
+  loadFisherDetails(id: string) {
+    this.FisherService.getFisherDetails(id).subscribe((fisher) => {
+      this.isEditMode = true;
+      this.fisherForm.setValue({
+        id: fisher.id,
+        nome: fisher.nome,
+        contato: fisher.contato,
+      });
+    });
+  }
+
+  // Enviando os dados do pescador
+  onSubmit() {
+    if (this.fisherForm.value.id) {
+      this.FisherService.updateFisher(this.fisherForm.value).subscribe(() => {
+        console.log('Perfil atualizado com sucesso!');
+        this.modalRef?.hide();
+        this.fetchFishers();
+      });
+    } else {
+      this.FisherService.postFisherLists(this.fisherForm.value).subscribe(() => {
+        console.log('Perfil criado com sucesso!');
+        this.modalRef?.hide();
+        this.fetchFishers();
+      });
+    }
+  }
+
   // --------------------------------- DELETE ---------------------------------
   // Função de Excluir
   removeObj(id: String): void {
-    this.fisherService.deleteFisherLists(id).subscribe((data) => {
-      console.log(data);
-      this.getFishers();
+    this.FisherService.deleteFisherLists(id).subscribe(() => {
+      console.log('Perfil excluído com sucesso!');
+      this.fetchFishers();
     });
   }
 
@@ -72,10 +125,5 @@ export class FisherDashboardComponent implements OnInit {
       this.selectedFisher = null;
       this.modalRef?.hide();
     }
-  }
-
-  // --------------------------------- UPDATE ---------------------------------
-  editFisher(id: String) {
-    this.router.navigate(['/fisher/edit/', id]);
   }
 }

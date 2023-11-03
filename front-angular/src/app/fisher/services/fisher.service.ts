@@ -30,26 +30,13 @@ export class FisherService {
   }
 
   /* Criando Perfil */
-  postFisherLists(form: any) {
-    const formData: FisherList = {      
+  postFisherLists(form: any): Observable<any> {
+    const formData: FisherList = {
       nome: form.nome,
       contato: form.contato,
-      barco: form.barco,
-      local_coleta: form.local_coleta,
-      id: '',      
+      id: '',
     };
-    return this.httpClient
-      .post('http://localhost:8080/eco_system/fisher-oprs', formData)
-      .subscribe(
-        (Response) => {
-          console.log(Response);
-          return Response;
-        },
-        (error) => {
-          console.log(error);
-          return error;
-        }
-      );
+    return this.httpClient.post('http://localhost:8080/eco_system/fisher-oprs', formData);
   }
 
   /* Excluindo Perfil */

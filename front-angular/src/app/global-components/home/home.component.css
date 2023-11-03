@@ -1,0 +1,230 @@
+.demo {
+  padding: 120px 0
+}
+
+.video-background {
+  position: fixed;  /* Fixa o vídeo no fundo */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;  /* Garante que o vídeo fique atrás do conteúdo */
+}
+
+.background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.75;
+}
+
+a {
+  text-decoration: none;
+}
+
+.colunaCat {
+  padding-bottom: 20px;
+  background: #fff;
+  border-radius: 25px;
+  text-align: center;
+  position: relative;
+  transition: all .3s ease 0s
+}
+
+.colunaCat .title {
+  padding: 40px 20px 170px;
+  margin: 0 0 30px;
+  background: linear-gradient(to bottom right, #fa6fe6, #ffef65);
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  overflow: hidden;
+  position: relative;
+  border-radius: 25px;
+}
+
+.colunaCat .title:after,
+.colunaCat .title:before {
+  content: "";
+  width: 280px;
+  height: 200px;
+  border-radius: 80px;
+  background: #fff;
+  position: absolute;
+  bottom: -175px;
+  left: -46px;
+  transform: rotate(-85deg)
+}
+
+.colunaCat .title:after {
+  border-radius: 100px;
+  bottom: auto;
+  top: 150px;
+  left: auto;
+  right: -70px;
+  transform: rotate(-40deg)
+}
+
+.colunaCat .category-value {
+  display: inline-block;
+  width: 140px;
+  height: 140px;
+  line-height: 65px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 8px rgba(0, 0, 0, .3);
+  padding: 30px 0;
+  font-size: 35px;
+  font-weight: 600;
+  color: #404040;
+  position: absolute;
+  top: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all .3s ease 0s
+}
+
+.colunaCat:hover .category-value {
+  background: linear-gradient(to bottom, #fa6fe6, #ffef65);
+  color: #fff
+}
+
+.colunaCat .month {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 0
+}
+
+.colunaCat .category-content {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+  text-align: left;
+  transition: all .3s ease 0s
+}
+
+.colunaCat .category-content li {
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  line-height: 35px;
+}
+
+.colunaCat .category-content li.disable {
+  color: #707070
+}
+
+.colunaCat .category-content li.disable:before {
+  display: none
+}
+
+.colunaCat .colunaCat-signup {
+  display: inline-block;
+  padding: 13px 45px;
+  border-radius: 30px;
+  background: linear-gradient(to right, #fa6fe6, #ffef65);
+  font-size: 22px;
+  font-weight: 700;
+  color: #404040;
+  text-transform: uppercase;
+  z-index: 1;
+  position: relative;
+  transition: all .3s ease 0s
+}
+
+.colunaCat .colunaCat-signup:hover {
+  color: #fff
+}
+
+.colunaCat .colunaCat-signup:before {
+  content: "";
+  width: 98%;
+  height: 92%;
+  border-radius: 30px;
+  background: #fff;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  z-index: -1
+}
+
+.colunaCat .colunaCat-signup:hover:before {
+  background: 0 0
+}
+
+.colunaCat.blue .title {
+  background: linear-gradient(to bottom right, #44f2b5, #4cbde2)
+}
+
+.colunaCat.blue:hover .category-value {
+  background: linear-gradient(to bottom, #44f2b5, #4cbde2)
+}
+
+.colunaCat.blue .category-content li:before {
+  border-color: #44f2b5;
+  color: #44f2b5
+}
+
+.colunaCat.blue .colunaCat-signup {
+  background: linear-gradient(to bottom right, #44f2b5, #4cbde2)
+}
+
+.colunaCat.green .title {
+  background: linear-gradient(to bottom right, #66fd9c, #f6fa60)
+}
+
+.colunaCat.green:hover .category-value {
+  background: linear-gradient(to bottom, #66fd9c, #f6fa60)
+}
+
+.colunaCat.green .category-content li:before {
+  border-color: #66fd9c;
+  color: #66fd9c
+}
+
+.colunaCat.green .colunaCat-signup {
+  background: linear-gradient(to bottom right, #66fd9c, #f6fa60)
+}
+
+@media only screen and (max-width:990px) {
+  .colunaCat6 {
+    margin-bottom: 30px
+  }
+}
+
+@media only screen and (max-width:767px) {
+  .colunaCat6 .title:before {
+    height: 400px;
+    top: 100px;
+    left: 55px
+  }
+
+  .colunaCat .title:after {
+    width: 550px;
+    height: 550px;
+    top: 150px;
+    right: -100px;
+    transform: rotate(-20deg)
+  }
+}
+
+@media only screen and (max-width:480px) {
+
+  .colunaCat .title:after,
+  .colunaCat .title:before {
+    width: 280px;
+    height: 200px;
+    top: 220px;
+    left: -46px
+  }
+
+  .colunaCat .title:after {
+    top: 150px;
+    left: auto;
+    right: -70px
+  }
+}
