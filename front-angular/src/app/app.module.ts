@@ -19,7 +19,7 @@ import { LocalDetailsComponent } from './local/details/local-details.component';
 import { ShipDetailsComponent } from './ship/details/ship-details.component';
 import { ShipDahsboardComponent } from './ship/dahsboard/ship-dahsboard.component';
 import { HomeComponent } from './global-components/home/home.component';
-import { TrashComponent } from './trash/trash.component';
+import { TrashComponent } from './trash/dashboard/trash.component';
 
 @NgModule({
   declarations: [

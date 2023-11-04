@@ -8,7 +8,7 @@ import { FisherDashboardComponent } from './fisher/dashboard/fisher-dashboard.co
 import { UserDashboardComponent } from './users/dashboard/user-dashboard.component';
 import { UsersComponent } from './users/profile/users.component';
 import {HomeComponent} from "./global-components/home/home.component";
-import { TrashComponent } from './trash/trash.component';
+import { TrashComponent } from './trash/dashboard/trash.component';
 import { LocalDetailsComponent } from './local/details/local-details.component';
 
 const routes: Routes = [
@@ -22,8 +22,8 @@ const routes: Routes = [
   { path: 'user', component: UsersComponent },
   { path: 'user/edit/:id', component: UsersComponent },
   { path: 'main', component: HomeComponent },
-  { path: 'trash', component: TrashComponent },
-  { path: 'local', component: LocalDetailsComponent}
+  { path: 'trash/list', component: TrashComponent },
+  { path: 'local/list', component: LocalDetailsComponent }
 ];
 
 @NgModule({
