@@ -6,7 +6,7 @@ export interface UserList {
   password: string;
   role: UserRole;
   nome: string;
-  contato?: string;
+  contato: string;
 }
 
 export interface UserDetails extends UserList {

@@ -8,7 +8,7 @@
       <div class="col-xl-3 col-sm-6" *ngFor="let FisherList of fishers">
         <div class="card">
           <div class="card-body">
-            <div class="dropdown float-end">
+            <div class="float-end">
               <a class="disc" href="javascript:void(0)" style="color: black"
                  (click)="openDeleteModal(deleteConfirmationModal, FisherList)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -28,7 +28,8 @@
               <p class="text-muted mb-0">{{ FisherList.contato | beautyContato }}</p>
             </div>
             <div class="d-flex gap-2 pt-4">
-              <button type="button" class="btn btn-outline-info btn-sm w-50" (click)="openInfoModal(FisherList, infoModal)">
+              <button type="button" class="btn btn-outline-info btn-sm w-50"
+                      (click)="openInfoModal(FisherList, infoModal)">
                 Editar
               </button>
               <button type="button" class="btn btn-outline-secondary btn-sm w-50">Histórico</button>
@@ -45,10 +46,14 @@
               <div class="align-items-center">
                 <h5 class="font-size-16 mb-1"><a class="text-dark">Novo Pescador</a></h5>
                 <div class="d-flex justify-content-center">
-                  <a class="disc" href="javascript:void(0)" (click)="openInfoModal(null, infoModal)" style="color: black">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
-                      <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                      <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                  <a class="disc" href="javascript:void(0)" (click)="openInfoModal(null, infoModal)"
+                     style="color: black">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                         class="bi bi-person-plus" viewBox="0 0 16 16">
+                      <path
+                        d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                      <path fill-rule="evenodd"
+                            d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
                     </svg>
                   </a>
                 </div>
@@ -57,99 +62,100 @@
           </div>
         </div>
       </div>
-
-      <!-- Modal Delete -->
-      <ng-template #deleteConfirmationModal>
-        <div>
-          <div class="modal-header">
-            <h5 class="modal-title" id="deleteModalLabel">Confirmar Exclusão</h5>
-            <button
-              type="button"
-              class="btn-close"
-              aria-label="Close"
-              (click)="modalRef?.hide()"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <p>
-              Você tem certeza que deseja excluir o perfil de {{ selectedFisher?.nome }}?
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              (click)="modalRef?.hide()"
-            >
-              Cancelar
-            </button>
-            <button type="button" class="btn btn-danger" (click)="confirmDelete()">
-              Excluir
-            </button>
-          </div>
-        </div>
-      </ng-template>
-
-      <!-- Novo Pescador -->
-      <ng-template #infoModal>
-        <div>
-          <div class="modal-header">
-            <h5 class="modal-title" id="createModalLabel">Cadastrar novo pescador</h5>
-            <h5 class="modal-title" id="editModalLabel" *ngIf="isEditMode">Editar pescador</h5>
-            <button
-              type="button"
-              class="btn-close"
-              aria-label="Close"
-              (click)="modalRef?.hide()"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form [formGroup]="fisherForm" (ngSubmit)="onSubmit()">
-              <div class="row pt-1">
-                <div class="col-6 mb-3">
-                  <h6>Nome</h6>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="nome"
-                    name="nome"
-                    formControlName="nome"
-                    placeholder="Nome"
-                  />
-                </div>
-                <div class="col-6 mb-3">
-                  <h6>Contato</h6>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="contato"
-                    name="contato"
-                    appFormatContato
-                    formControlName="contato"
-                    placeholder="Contato"
-                  />
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="submit"
-                  class="btn btn-outline-primary fisher"
-                  *ngIf="!isEditMode"
-                >
-                  Criar Pescador
-                </button>
-                <button
-                  type="submit"
-                  class="btn btn-outline-warning fisher"
-                  *ngIf="isEditMode"
-                >
-                  Atualizar Pescador
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </ng-template>
     </div>
   </div>
 </div>
+
+
+<!-- Modal Delete -->
+<ng-template #deleteConfirmationModal>
+  <div>
+    <div class="modal-header">
+      <h5 class="modal-title" id="deleteModalLabel">Confirmar Exclusão</h5>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modalRef?.hide()"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <p>
+        Você tem certeza que deseja excluir o perfil de {{ selectedFisher?.nome }}?
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="modalRef?.hide()"
+      >
+        Cancelar
+      </button>
+      <button type="button" class="btn btn-danger" (click)="confirmDelete()">
+        Excluir
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Novo Pescador -->
+<ng-template #infoModal>
+  <div>
+    <div class="modal-header">
+      <h5 class="modal-title" id="createModalLabel">Cadastrar novo pescador</h5>
+      <h5 class="modal-title" id="editModalLabel" *ngIf="isEditMode">Editar pescador</h5>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modalRef?.hide()"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="fisherForm" (ngSubmit)="onSubmit()">
+        <div class="row pt-1">
+          <div class="col-6 mb-3">
+            <h6>Nome</h6>
+            <input
+              type="text"
+              class="form-control"
+              id="nome"
+              name="nome"
+              formControlName="nome"
+              placeholder="Nome"
+            />
+          </div>
+          <div class="col-6 mb-3">
+            <h6>Contato</h6>
+            <input
+              type="text"
+              class="form-control"
+              id="contato"
+              name="contato"
+              appFormatContato
+              formControlName="contato"
+              placeholder="Contato"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="submit"
+            class="btn btn-outline-primary fisher"
+            *ngIf="!isEditMode"
+          >
+            Criar Pescador
+          </button>
+          <button
+            type="submit"
+            class="btn btn-outline-warning fisher"
+            *ngIf="isEditMode"
+          >
+            Atualizar Pescador
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
