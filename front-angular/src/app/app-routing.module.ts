@@ -9,6 +9,7 @@ import { UserDashboardComponent } from './users/dashboard/user-dashboard.compone
 import { UsersComponent } from './users/profile/users.component';
 import {HomeComponent} from "./global-components/home/home.component";
 import { TrashComponent } from './trash/trash.component';
+import { LocalDetailsComponent } from './local/details/local-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'user', component: UsersComponent },
   { path: 'user/edit/:id', component: UsersComponent },
   { path: 'main', component: HomeComponent },
-  { path: 'trash', component: TrashComponent }
+  { path: 'trash', component: TrashComponent },
+  { path: 'local', component: LocalDetailsComponent}
 ];
 
 @NgModule({

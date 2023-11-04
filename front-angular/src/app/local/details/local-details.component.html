@@ -1,1 +1,80 @@
-<p>local-details works!</p>
+<header>
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+</header>
+<div class="content">
+    <div class="container" style="margin-top: 70px">
+        <div class="row">
+            <div class="col-xl-3 col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="d-flex align-items-center">
+                            <div class="flex-1">
+                                <h5 class="font-size-16 mb-1">LocalList.nome</h5>
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-2 pt-4">
+                            <button type="button" class="btn btn-outline-info btn-sm w-50">
+                                Editar
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm w-50">Excluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Novo Local -->
+        <div class="col-xl-3 col-sm-6 d-flex align-items-center justify-content-center">
+            <div class="card">
+                <div class="card-body translucent">
+                    <div class="d-flex align-items-center">
+                        <div class="align-items-center">
+                            <h5 class="font-size-16 mb-1">Novo Local</h5>
+                            <div class="d-flex justify-content-center">
+                                <a class="disc" href="javascript:void(0)" style="color: black">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                                        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                      </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Novo Local -->
+<ng-template #infoModal>
+    <div>
+        <div class="modal-header">
+            <h5 class="modal-title" id="createModalLabel">Cadastrar novo Local</h5>
+
+            <button type="button" class="btn-close" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="row pt-1">
+                    <div class="col-6 mb-3">
+                        <h6>Nome</h6>
+                        <input type="text" class="form-control" id="nome" name="nome" formControlName="nome"
+                            placeholder="Nome" />
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-primary">
+                        Cadastrar novo Local
+
+                    </button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
