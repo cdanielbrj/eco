@@ -19,6 +19,7 @@ import { LocalDetailsComponent } from './local/details/local-details.component';
 import { ShipDetailsComponent } from './ship/details/ship-details.component';
 import { ShipDahsboardComponent } from './ship/dahsboard/ship-dahsboard.component';
 import { HomeComponent } from './global-components/home/home.component';
+import { TrashComponent } from './trash/trash.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HomeComponent } from './global-components/home/home.component';
     LocalDetailsComponent,
     ShipDetailsComponent,
     ShipDahsboardComponent,
-    HomeComponent
+    HomeComponent,
+    TrashComponent
   ],
   imports: [
     BrowserModule,
