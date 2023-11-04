@@ -7,9 +7,9 @@ import { AuthGuard } from './login/auth.guard';
 import { FisherDashboardComponent } from './fisher/dashboard/fisher-dashboard.component';
 import { UserDashboardComponent } from './users/dashboard/user-dashboard.component';
 import { UsersComponent } from './users/profile/users.component';
-import {HomeComponent} from "./global-components/home/home.component";
 import { TrashComponent } from './trash/dashboard/trash.component';
 import { LocalDetailsComponent } from './local/details/local-details.component';
+import { HomeComponent } from "./global/components/home/home.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },

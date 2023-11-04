@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpeditionsService } from '../actions/expeditions.service';
+import { LocalService } from "../local/services/local.service";
+import { UserService } from "../users/services/user.service";
+import { ShipService } from "../ship/services/ship.service";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import {ShipList} from "../ship/services/ship-list";
 
 @Component({
   selector: 'app-expedition',
@@ -13,14 +17,23 @@ import { ActivatedRoute } from '@angular/router';
 export class ExpeditionComponent implements OnInit {
   expeditionForm!: FormGroup;
   isEditMode: boolean = false;
+  locals: any[] = [];
+  users: any[] = [];
+  ships: any[] = [];
   constructor(
     private ExpeditionsService: ExpeditionsService,
+    private LocalService: LocalService,
+    private UserService: UserService,
+    private ShipService: ShipService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.initForm();
+    this.carregarLocais();
+    this.carregarUsuarios();
+    this.carregarBarcos();
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.loadExpeditionDetails(params['id']);
@@ -76,5 +89,24 @@ export class ExpeditionComponent implements OnInit {
       console.log('Expedição criada com sucesso!');
       this.router.navigate(['/dashboard']);
     }
+  }
+
+  /* Integrações com outras APIs */
+  carregarLocais() {
+    this.LocalService.getLocalLists().subscribe((data) => {
+      this.locals = data;
+    });
+  }
+
+  carregarUsuarios() {
+    this.UserService.getUserLists().subscribe((data) => {
+      this.users = data.filter(user => user.role === 'USER');
+    });
+  }
+
+  carregarBarcos(){
+    this.ShipService.getShipLists().subscribe((data) => {
+      this.ships = data;
+    });
   }
 }

@@ -12,14 +12,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './login/auth.interceptor';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FisherDashboardComponent } from './fisher/dashboard/fisher-dashboard.component';
-import { NavbarComponent } from './global-components/navbar/navbar.component';
+import { NavbarComponent } from './global/components/navbar/navbar.component';
 import { UsersComponent } from './users/profile/users.component';
 import { UserDashboardComponent } from './users/dashboard/user-dashboard.component';
 import { LocalDetailsComponent } from './local/details/local-details.component';
 import { ShipDetailsComponent } from './ship/details/ship-details.component';
 import { ShipDahsboardComponent } from './ship/dahsboard/ship-dahsboard.component';
-import { HomeComponent } from './global-components/home/home.component';
+import { HomeComponent } from './global/components/home/home.component';
 import { TrashComponent } from './trash/dashboard/trash.component';
+import { FormatDataDirective } from './global/directives/data/format-data.directive';
+import { FormatHoraDirective } from './global/directives/hora/format-hora.directive';
+import { FormatContatoDirective } from './global/directives/contato/format-contato.directive';
+import { BeautyContatoPipe } from './global/pipes/contato/beauty-contato.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,11 @@ import { TrashComponent } from './trash/dashboard/trash.component';
     ShipDetailsComponent,
     ShipDahsboardComponent,
     HomeComponent,
-    TrashComponent
+    TrashComponent,
+    FormatDataDirective,
+    FormatHoraDirective,
+    FormatContatoDirective,
+    BeautyContatoPipe
   ],
   imports: [
     BrowserModule,
