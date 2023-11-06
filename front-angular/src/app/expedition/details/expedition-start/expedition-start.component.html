@@ -2,26 +2,27 @@
   <app-navbar></app-navbar>
   <router-outlet></router-outlet>
 </header>
-<section class="h-100 h-custom gradient-custom-2">
+<section class="vh-75">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-8">
+      <div class="col col-lg-8 mb-4 mb-lg-0">
         <div
           class="card card-registration card-registration-2"
-          style="border-radius: 15px"
+          style="border-radius: 0.5rem"
         >
           <div class="card-body p-0">
             <div class="row g-0">
               <div class="col-lg-12">
                 <div class="p-5">
                   <form [formGroup]="expeditionForm" (ngSubmit)="onSubmit()">
-                    <h3 class="fw-normal mb-5" style="color: #01afef">
+                    <h4 class="fw-normal mb-4" style="color: #01afef">
                       Informações Gerais
-                    </h3>
+                    </h4>
                     <div class="row">
                       <!-- Data -->
                       <div class="col-md-6 mb-4 pb-2">
                         <div class="form-outline">
+                          <h6>Data</h6>
                           <input
                             type="text"
                             id="data"
@@ -37,6 +38,7 @@
                       <!-- Hora inicial -->
                       <div class="col-md-6 mb-4 pb-2">
                         <div class="form-outline">
+                          <h6>Horário de Início</h6>
                           <input
                             type="text"
                             id="hora_inicio"
@@ -53,6 +55,7 @@
                     <!-- Área de Coleta -->
                     <div class="mb-4 pb-2">
                       <div class="form-outline">
+                        <h6>Área de Coleta</h6>
                         <select
                           class="form-select"
                           aria-label="Locais de Coleta"
@@ -69,6 +72,7 @@
                       <!-- Bolsista -->
                       <div class="col-md-6 mb-4 pb-2">
                         <div class="form-outline">
+                          <h6>Bolsista</h6>
                           <select
                             class="form-select"
                             aria-label="Bolsistas"
@@ -84,6 +88,7 @@
                       <!-- Embarcação -->
                       <div class="col-md-6 mb-4 pb-2">
                         <div class="form-outline">
+                          <h6>Embarcação</h6>
                           <select
                             class="form-select"
                             aria-label="Embarcações"
@@ -99,7 +104,7 @@
 
                     <button
                       type="submit"
-                      class="btn btn-primary btn-lg"
+                      class="btn btn-primary"
                       data-mdb-ripple-color="dark"
                       *ngIf="!isEditMode"
                     >
@@ -107,7 +112,7 @@
                     </button>
                     <button
                       type="submit"
-                      class="btn btn-primary btn-lg"
+                      class="btn btn-primary"
                       data-mdb-ripple-color="dark"
                       *ngIf="isEditMode"
                     >

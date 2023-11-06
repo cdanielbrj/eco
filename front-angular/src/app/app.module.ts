@@ -5,9 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { NgOptimizedImage } from "@angular/common";
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './expedition/dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
-import { ExpeditionComponent } from './expedition/expedition.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './login/auth.interceptor';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -24,13 +23,14 @@ import { FormatDataDirective } from './global/directives/data/format-data.direct
 import { FormatHoraDirective } from './global/directives/hora/format-hora.directive';
 import { FormatContatoDirective } from './global/directives/contato/format-contato.directive';
 import { BeautyContatoPipe } from './global/pipes/contato/beauty-contato.pipe';
+import { ExpeditionEndComponent } from './expedition/details/expedition-end/expedition-end.component';
+import { ExpeditionStartComponent } from './expedition/details/expedition-start/expedition-start.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    ExpeditionComponent,
     FisherDashboardComponent,
     NavbarComponent,
     UsersComponent,
@@ -43,7 +43,9 @@ import { BeautyContatoPipe } from './global/pipes/contato/beauty-contato.pipe';
     FormatDataDirective,
     FormatHoraDirective,
     FormatContatoDirective,
-    BeautyContatoPipe
+    BeautyContatoPipe,
+    ExpeditionEndComponent,
+    ExpeditionStartComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,151 @@
+<header>
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+</header>
+
+<div class="container py-5 h-100">
+    <section>
+        <div class="d-flex align-items-center section-heading title-style4 padding-25px-bottom sm-padding-15px-bottom">
+            <h4 class="py-3" style="margin-right: 1rem">Expedições em Andamento</h4>
+            <a type="button" class="btn btn-secondary mb-3" href="/expedition/start">
+                Criar Expedição
+            </a>
+        </div>
+        <div class="row mt-60" *ngIf="todayExpeditions.length > 0; else noExpeditionsMessage">
+            <div class="col-lg-4 col-md-6 margin-30px-bottom xs-margin-20px-bottom"
+                 *ngFor="let expedition of todayExpeditions">
+                <div class="expedition-block4 h-100">
+                    <div class="expedition-icon">
+                        <a (click)="finishExpedition(expedition.id)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                                 class="bi bi-check2-circle" viewBox="0 0 16 16">
+                                <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+                                <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="expedition-desc">
+                        <h4>{{ expedition.shipNome }}</h4>
+                        <h5>{{ expedition.localNome }}</h5>
+                        <p><strong>Bolsista:</strong> {{expedition.userNome}}</p>
+                        <p><strong>Hora Inicial:</strong> {{expedition.hora_inicio}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-4">
+        <div class="d-flex align-items-center">
+            <h4 style="margin-right: 1rem">Expedições Passadas</h4>
+            <!-- Botão para mostrar/ocultar expedições passadas -->
+            <button type="button" class="btn btn-secondary mb-3" (click)="togglePastExpeditions()">
+                {{ showPastExpeditions ? 'Ocultar' : 'Exibir' }}
+            </button>
+        </div>
+        <div *ngIf="showPastExpeditions">
+            <div class="card rounded-3">
+                <div class="card-body p-md-0 mx-md-1">
+                    <table class="table table-striped align-middle mb-0 bg-white">
+                        <thead class="bg-light">
+                        <tr>
+                            <th>
+                                <div class="ms-3">Bolsista</div>
+                            </th>
+                            <th>Data</th>
+                            <th>Embarque</th>
+                            <th>Local de Coleta</th>
+                            <th>Embarcação</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <!-- Linha Modelo -->
+                        <tr *ngFor="let expedition of pastExpeditions">
+                            <!-- Bolsista -->
+                            <td>
+                                <div class="d-flex align-items-center ms-3">
+                                    <p class="fw-normal mb-1">{{ expedition.userNome }}</p>
+                                </div>
+                            </td>
+
+                            <!-- Data -->
+                            <td>
+                                <p class="fw-normal mb-1">{{ expedition.data }}</p>
+                            </td>
+
+                            <!-- Hora -->
+                            <td>
+                                <p class="fw-normal mb-1">{{ expedition.hora_inicio }}</p>
+                            </td>
+
+                            <!-- Local de Coleta -->
+                            <td>
+                                <p class="fw-normal mb-1">{{ expedition.localNome }}</p>
+                            </td>
+
+                            <!-- Embarcação -->
+                            <td>
+                                <p class="fw-normal mb-1">{{ expedition.shipNome }}</p>
+                            </td>
+
+                            <!-- Status -->
+                            <td>
+                                <button
+                                        type="button"
+                                        class="btn btn-outline-warning btn-md"
+                                        style="margin-right: 20px"
+                                        (click)="editExpedition(expedition.id)">
+                                    Editar
+                                </button>
+                                <button
+                                        type="button"
+                                        class="btn btn-outline-danger btn-md"
+                                        (click)="openDeleteModal(deleteConfirmationModal, expedition.id)">
+                                    Excluir
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Modal de Confirmação de Exclusão -->
+<ng-template #deleteConfirmationModal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Confirmar Exclusão</h5>
+        <button
+                type="button"
+                class="btn-close"
+                aria-label="Close"
+                (click)="modalRef?.hide()">
+        </button>
+    </div>
+    <div class="modal-body">
+        Você tem certeza que deseja excluir esta expedição?
+    </div>
+    <div class="modal-footer">
+        <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="modalRef?.hide()">
+            Cancelar
+        </button>
+        <button
+                type="button"
+                class="btn btn-danger"
+                (click)="confirmDelete()">
+            Excluir
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #noExpeditionsMessage>
+    <div class="alert alert-info" role="alert">
+        Não há expedições agendadas para hoje.
+    </div>
+</ng-template>

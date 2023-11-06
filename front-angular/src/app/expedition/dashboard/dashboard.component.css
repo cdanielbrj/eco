@@ -1,0 +1,171 @@
+body {
+    margin-top: 20px;
+}
+
+.expedition-block4 {
+    position: relative;
+    border: 1px solid #f7f7f7;
+    background: #fff;
+    box-shadow: 0px 10px 30px 0px rgba(50, 50, 50, 0.16);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 30px
+}
+
+.expedition-block4:before {
+    position: absolute;
+    top: -42px;
+    right: -100px;
+    z-index: 0;
+    content: " ";
+    width: 250px;
+    height: 120px;
+    background: #f7f7f7;
+    border-bottom-left-radius: 0;
+    transition: all 0.4s ease-in-out;
+    transform: rotate(45deg);
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out
+}
+
+.expedition-block4:hover:before {
+    background: #01afef;
+}
+
+/* Mudar a cor do ícone */
+.expedition-block4:hover .expedition-icon svg {
+    fill: #f7f7f7;
+}
+
+.expedition-block4 .expedition-icon svg {
+    color: #414141;
+    transition: color 0.4s ease-in-out;
+}
+
+.expedition-block4 .expedition-icon a {
+    cursor: pointer;
+}
+
+.expedition-block4 .expedition-icon {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 1;
+    text-align: center
+}
+
+.expedition-block4 i {
+    color: #86bc42;
+    font-size: 38px;
+    line-height: normal;
+    transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    margin-bottom: 0
+}
+
+.expedition-block4:hover i {
+    color: #fff
+}
+
+.expedition-block4 .expedition-desc {
+    position: relative
+}
+
+.expedition-block4 .expedition-desc h4 {
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 600
+}
+
+.expedition-block4 .expedition-desc h5 {
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: 500
+}
+
+.expedition-block4 .expedition-desc h5:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: #01afef;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    -moz-transition-duration: .4s;
+    -ms-transition-duration: .4s;
+    -webkit-transition-duration: .4s;
+    -o-transition-duration: .4s;
+    transition-duration: .4s
+}
+
+.expedition-block4 p {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+@media screen and (max-width: 1199px) {
+    .expedition-block4:before {
+        right: -110px
+    }
+
+    .expedition-block4 .expedition-desc h4 {
+        font-size: 16px;
+        margin-bottom: 5px
+    }
+
+    .expedition-block4 p {
+        padding-right: 40px;
+        margin-top: 20px
+    }
+
+    .expedition-block4 i {
+        font-size: 34px
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .expedition-block4 {
+        padding: 25px
+    }
+
+    .expedition-block4 .expedition-desc h4 {
+        font-size: 15px
+    }
+
+    .expedition-block4 i {
+        font-size: 32px
+    }
+
+    .expedition-block4 p {
+        margin-top: 15px;
+        padding-right: 30px
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .expedition-block4 {
+        padding: 20px
+    }
+
+    .expedition-block4:before {
+        right: -130px
+    }
+
+    .expedition-block4 i {
+        font-size: 28px
+    }
+
+    .expedition-block4 .expedition-icon {
+        top: 13px;
+        right: 12px
+    }
+}
+
+.margin-30px-bottom {
+    margin-bottom: 30px;
+}

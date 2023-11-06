@@ -1,33 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { ExpeditionsService } from '../actions/expeditions.service';
-import { LocalService } from "../local/services/local.service";
-import { UserService } from "../users/services/user.service";
-import { ShipService } from "../ship/services/ship.service";
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
-import {ShipList} from "../ship/services/ship-list";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from "@angular/forms";
+import {ExpeditionService} from "../../services/expedition.service";
+import {LocalService} from "../../../local/services/local.service";
+import {UserService} from "../../../users/services/user.service";
+import {ShipService} from "../../../ship/services/ship.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-expedition',
-  templateUrl: './expedition.component.html',
-  styleUrls: ['./expedition.component.css'],
+  selector: 'app-expedition-start',
+  templateUrl: './expedition-start.component.html',
+  styleUrls: ['./expedition-start.component.css']
 })
-
-export class ExpeditionComponent implements OnInit {
+export class ExpeditionStartComponent implements OnInit {
   expeditionForm!: FormGroup;
   isEditMode: boolean = false;
   locals: any[] = [];
   users: any[] = [];
   ships: any[] = [];
+
   constructor(
-    private ExpeditionsService: ExpeditionsService,
+    private ExpeditionsService: ExpeditionService,
     private LocalService: LocalService,
     private UserService: UserService,
     private ShipService: ShipService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -82,12 +81,12 @@ export class ExpeditionComponent implements OnInit {
         this.expeditionForm.value
       ).subscribe((response) => {
         console.log('Expedição atualizada com sucesso!');
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/expedition/list']);
       });
     } else {
       this.ExpeditionsService.postExpeditionLists(this.expeditionForm.value);
       console.log('Expedição criada com sucesso!');
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/expedition/list']);
     }
   }
 
@@ -104,7 +103,7 @@ export class ExpeditionComponent implements OnInit {
     });
   }
 
-  carregarBarcos(){
+  carregarBarcos() {
     this.ShipService.getShipLists().subscribe((data) => {
       this.ships = data;
     });

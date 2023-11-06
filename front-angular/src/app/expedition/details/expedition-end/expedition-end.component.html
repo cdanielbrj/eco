@@ -1,0 +1,190 @@
+<header>
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
+</header>
+<section class="vh-75">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+          <div class="card-body p-0">
+            <form [formGroup]="expeditionForm" (ngSubmit)="onSubmit()">
+              <div class="row g-0">
+                <div class="col-lg-6">
+                  <div class="p-5">
+                    <h3 class="fw-normal mb-5" style="color: #01afef">Informações Gerais</h3>
+                    <div class="row">
+                      <!-- Data -->
+                      <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline">
+                          <h6>Data</h6>
+                          <input
+                            type="text"
+                            id="data"
+                            name="data"
+                            appFormatData
+                            formControlName="data"
+                            class="form-control"
+                            placeholder="Data"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Hora inicial -->
+                      <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline">
+                          <h6>Horário de Início</h6>
+                          <input
+                            type="text"
+                            id="hora_inicio"
+                            name="hora_inicio"
+                            appFormatHora
+                            formControlName="hora_inicio"
+                            class="form-control"
+                            placeholder="Hora: Início"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <!-- Bolsista -->
+                      <div class="col-md-4 mb-4 pb-2">
+                        <div class="form-outline">
+                          <h6>Bolsista</h6>
+                          <select
+                            class="form-select"
+                            aria-label="Bolsistas"
+                            id="user_id"
+                            name="user_id"
+                            formControlName="user_id">
+                            <option value=null disabled selected>Bolsistas</option>
+                            <option *ngFor="let user of users" [value]="user.id">{{ user["nome"] }}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Embarcação -->
+                      <div class="col-md-4 mb-4 pb-2">
+                        <div class="form-outline">
+                          <h6>Embarcação</h6>
+                          <select
+                            class="form-select"
+                            aria-label="Embarcações"
+                            id="ship_id"
+                            name="ship_id"
+                            formControlName="ship_id">
+                            <option value=null disabled selected>Embarcações</option>
+                            <option *ngFor="let ship of ships" [value]="ship.id">{{ ship["nome"] }}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Área de Coleta -->
+                      <div class="col-md-4 mb-4 pb-2">
+                        <div class="form-outline">
+                          <h6>Área de Coleta</h6>
+                          <select
+                            class="form-select"
+                            aria-label="Locais de Coleta"
+                            id="local_id"
+                            name="local_id"
+                            formControlName="local_id">
+                            <option value=null disabled selected>Locais de Coleta</option>
+                            <option *ngFor="let local of locals" [value]="local.id">{{ local["nome"] }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6 bg-indigo text-white">
+                  <div class="p-5">
+                    <h3 class="fw-normal mb-5">Detalhes da Expedição</h3>
+                    <div class="row">
+                      <!-- Sacos Enviados -->
+                      <div class="col-md-4 mb-4 pb-2">
+                        <div class="form-outline">
+                          <h6>Sacos Enviados</h6>
+                          <input
+                            type="number"
+                            id="sacosenv"
+                            name="sacosenv"
+                            formControlName="sacosenv"
+                            class="form-control"
+                            placeholder="Sacos Enviados"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Sacos Utilizados -->
+                      <div class="col-md-4 mb-4 pb-2">
+                        <div class="form-outline">
+                          <h6>Sacos Utilizados</h6>
+                          <input
+                            type="number"
+                            id="sacosut"
+                            name="sacosut"
+                            formControlName="sacosut"
+                            class="form-control"
+                            placeholder="Sacos Utilizados"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Peso Total -->
+                      <div class="col-md-4 mb-4 pb-2">
+                        <div class="form-outline">
+                          <h6>Peso Total Recolhido</h6>
+                          <input
+                            type="number"
+                            id="lixo"
+                            name="lixo"
+                            formControlName="lixo"
+                            class="form-control"
+                            placeholder="Em Quilogramas"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <!-- Resíduos Recolhidos -->
+                      <div class="col-md-12 mb-4 pb-2">
+                        <div class="form-outline">
+                          <h6>Resíduos Recolhidos</h6>
+                          <div class="chip-list">
+                            <span class="chip" *ngFor="let trash of trashs" (click)="toggleSelectedTrash(trash.id)" [class.selected]="isTrashSelected(trash.id)">
+                              <span class="chip-label">{{ trash.nome }}</span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      data-mdb-ripple-color="dark"
+                      *ngIf="!isEditMode"
+                    >
+                      Criar Expedição
+                    </button>
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      data-mdb-ripple-color="dark"
+                      *ngIf="isEditMode"
+                    >
+                      Atualizar Expedição
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
