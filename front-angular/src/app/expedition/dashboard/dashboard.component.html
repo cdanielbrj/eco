@@ -42,6 +42,7 @@
             <button type="button" class="btn btn-secondary mb-3" (click)="togglePastExpeditions()">
                 {{ showPastExpeditions ? 'Ocultar' : 'Exibir' }}
             </button>
+            <button type="button" class="btn btn-outline-secondary mb-3 ms-3" (click)="exportSelectedExpeditions()">Exportar Selecionadas</button>
         </div>
         <div *ngIf="showPastExpeditions">
             <div class="card rounded-3">
@@ -50,8 +51,13 @@
                         <thead class="bg-light">
                         <tr>
                             <th>
-                                <div class="ms-3">Bolsista</div>
+                                <div class="ms-3">
+                                    <input type="checkbox"
+                                        [checked]="selectAll"
+                                        (change)="toggleSelectAll()">
+                                </div>
                             </th>
+                            <th>Bolsista</th>
                             <th>Data</th>
                             <th>Embarque</th>
                             <th>Local de Coleta</th>
@@ -62,12 +68,16 @@
 
                         <tbody>
                         <!-- Linha Modelo -->
-                        <tr *ngFor="let expedition of pastExpeditions">
+                        <tr *ngFor="let expedition of pastExpeditions; let i = index">
                             <!-- Bolsista -->
                             <td>
-                                <div class="d-flex align-items-center ms-3">
-                                    <p class="fw-normal mb-1">{{ expedition.userNome }}</p>
-                                </div>
+                                <input type="checkbox" class="ms-3"
+                                       [checked]="isExpeditionSelected(i)"
+                                       (change)="toggleSelection(i)">
+                            </td>
+                            <!-- Bolsista -->
+                            <td>
+                                <p class="fw-normal mb-1">{{ expedition.userNome }}</p>
                             </td>
 
                             <!-- Data -->
