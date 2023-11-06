@@ -42,7 +42,7 @@
             <button type="button" class="btn btn-secondary mb-3" (click)="togglePastExpeditions()">
                 {{ showPastExpeditions ? 'Ocultar' : 'Exibir' }}
             </button>
-            <button type="button" class="btn btn-outline-secondary mb-3 ms-3" (click)="exportSelectedExpeditions()">Exportar Selecionadas</button>
+            <button *ngIf="showPastExpeditions" type="button" class="btn btn-outline-secondary mb-3 ms-3" (click)="exportSelectedExpeditions()">Exportar Selecionadas</button>
         </div>
         <div *ngIf="showPastExpeditions">
             <div class="card rounded-3">
@@ -155,7 +155,9 @@
 </ng-template>
 
 <ng-template #noExpeditionsMessage>
+  <div class="col-4">
     <div class="alert alert-info" role="alert">
-        Não há expedições agendadas para hoje.
+      Não há expedições em andamento no momento.
     </div>
+  </div>
 </ng-template>

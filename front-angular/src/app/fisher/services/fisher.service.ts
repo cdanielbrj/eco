@@ -29,6 +29,15 @@ export class FisherService {
     );
   }
 
+  // Método para adicionar uma advertência
+  addAdv(fisherId: string, advertencia: string): Observable<FisherList> {
+    const requestBody = { advertencias: [advertencia] };
+    return this.httpClient.post<FisherList>(
+        `${this.baseURL}/${fisherId}/newAdv`,
+        requestBody
+    );
+  }
+
   /* Criando Perfil */
   postFisherLists(form: any): Observable<any> {
     const formData: FisherList = {

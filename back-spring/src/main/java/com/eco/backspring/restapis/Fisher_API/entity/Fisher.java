@@ -1,8 +1,8 @@
 package com.eco.backspring.restapis.Fisher_API.entity;
 
-import com.eco.backspring.restapis.Ship_API.entity.Ship;
 import jakarta.persistence.*;
 import lombok.Getter;
+import java.util.List;
 
 @Getter
 @Entity(name = "fishers")
@@ -18,6 +18,10 @@ public class Fisher {
     @Column(nullable = false)
     private String contato;
 
+    @Column
+    @ElementCollection
+    private List<String> advertencias;
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -28,5 +32,9 @@ public class Fisher {
 
     public void setContato(String contato) {
         this.contato = contato;
+    }
+
+    public void setAdvertencias(List<String> advertencias) {
+        this.advertencias = advertencias;
     }
 }

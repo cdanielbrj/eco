@@ -12,12 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping("/eco_system/ship-oprs")
 public class ShipController {
@@ -58,12 +56,22 @@ public class ShipController {
         return shipRepository.findByPartnerFisherId(fisherId).isPresent();
     }
 
+    private boolean isFisherEligible(Long fisherId) {
+        Optional<Fisher> fisherOptional = fisherRepository.findById(fisherId);
+        if (fisherOptional.isPresent()) {
+            Fisher fisher = fisherOptional.get();
+            // Verificar se o pescador tem 3 ou mais advertências
+            return fisher.getAdvertencias() == null || fisher.getAdvertencias().size() < 3;
+        }
+        return false;
+    }
+
     @PostMapping
     public ResponseEntity<Object> createShip(@RequestBody ShipDTO shipDTO) {
         Ship ship = shipMapper.toEntity(shipDTO, null);
         if (shipDTO.ownerFisherId() != null) {
             if(isFisherAssignedAsOwner(shipDTO.ownerFisherId()) || isFisherAssignedAsPartner(shipDTO.ownerFisherId())) {
-                return ResponseEntity.badRequest().body("O pescador dono já está associado com um barco.");
+                return ResponseEntity.badRequest().body("O pescador dono já está associado a um barco.");
             }
             Optional<Fisher> ownerFisherOptional = fisherRepository.findById(shipDTO.ownerFisherId());
             if (ownerFisherOptional.isPresent()) {
@@ -71,17 +79,23 @@ public class ShipController {
             } else {
                 return ResponseEntity.badRequest().body("Pescador dono não encontrado.");
             }
+            if (!isFisherEligible(shipDTO.ownerFisherId())) {
+                return ResponseEntity.badRequest().body("O pescador dono possui muitas advertências e não pode ser associado a um barco.");
+            }
         }
 
         if (shipDTO.partnerFisherId() != null) {
             if(isFisherAssignedAsOwner(shipDTO.partnerFisherId()) || isFisherAssignedAsPartner(shipDTO.partnerFisherId())) {
-                return ResponseEntity.badRequest().body("O pescador parceiro já está associado com um barco.");
+                return ResponseEntity.badRequest().body("O pescador parceiro já está associado a um barco.");
             }
             Optional<Fisher> partnerFisherOptional = fisherRepository.findById(shipDTO.partnerFisherId());
             if (partnerFisherOptional.isPresent()) {
                 ship.setPartnerFisher(partnerFisherOptional.get());
             } else {
                 return ResponseEntity.badRequest().body("Pescador parceiro não encontrado.");
+            }
+            if (!isFisherEligible(shipDTO.partnerFisherId())) {
+                return ResponseEntity.badRequest().body("O pescador parceiro possui muitas advertências e não pode ser associado a um barco.");
             }
         }
         Ship savedShip = shipRepository.save(ship);
@@ -103,6 +117,9 @@ public class ShipController {
                     || isFisherAssignedAsPartner(shipDTO.ownerFisherId()))) {
                 return ResponseEntity.badRequest().body("O pescador dono já está associado com um barco.");
             }
+            if (!isFisherEligible(shipDTO.ownerFisherId())) {
+                return ResponseEntity.badRequest().body("O pescador dono possui muitas advertências e não pode ser associado a um barco.");
+            }
             Optional<Fisher> ownerFisherOptional = fisherRepository.findById(shipDTO.ownerFisherId());
             ownerFisherOptional.ifPresent(existingShip::setOwnerFisher);
         }
@@ -113,6 +130,9 @@ public class ShipController {
                     && (isFisherAssignedAsPartner(shipDTO.partnerFisherId())
                     || isFisherAssignedAsOwner(shipDTO.partnerFisherId()))) {
                 return ResponseEntity.badRequest().body("O pescador parceiro já está associado com um barco.");
+            }
+            if (!isFisherEligible(shipDTO.partnerFisherId())) {
+                return ResponseEntity.badRequest().body("O pescador parceiro possui muitas advertências e não pode ser associado a um barco.");
             }
             Optional<Fisher> partnerFisherOptional = fisherRepository.findById(shipDTO.partnerFisherId());
             partnerFisherOptional.ifPresent(existingShip::setPartnerFisher);

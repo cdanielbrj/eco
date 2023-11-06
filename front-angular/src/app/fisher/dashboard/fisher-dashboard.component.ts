@@ -1,8 +1,8 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { FisherList } from '../services/fisher-list';
-import { FisherService } from '../services/fisher.service';
+import {BsModalService, BsModalRef} from 'ngx-bootstrap/modal';
+import {FisherList} from '../services/fisher-list';
+import {FisherService} from '../services/fisher.service';
 import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
@@ -10,23 +10,24 @@ import {FormControl, FormGroup} from "@angular/forms";
   templateUrl: './fisher-dashboard.component.html',
   styleUrls: ['./fisher-dashboard.component.css']
 })
+
 export class FisherDashboardComponent implements OnInit {
   fishers: FisherList[] = [];
   fisherForm!: FormGroup;
+  advForm!: FormGroup;
   isEditMode: boolean = false;
 
   constructor(
     private FisherService: FisherService,
     private modalService: BsModalService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
 
-  // --------------------------------- GET ---------------------------------
-  // Listagem dos perfis automática
+  // Listagem dos pescadores automática ao abrir a tela
   ngOnInit(): void {
     this.fetchFishers();
-    console.log('Perfis carregados com sucesso');
-    this.initForm();
+    this.initForms();
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.loadFisherDetails(params['id']);
@@ -34,7 +35,19 @@ export class FisherDashboardComponent implements OnInit {
     });
   }
 
-  // Função de Listar
+  initForms() {
+    this.fisherForm = new FormGroup({
+      id: new FormControl(null),
+      nome: new FormControl(null),
+      contato: new FormControl(null),
+    });
+    this.advForm = new FormGroup({
+      advertencias: new FormControl(null),
+    });
+  }
+
+  // --------------------------------- GET ---------------------------------
+  // Listagem dos pescadores
   fetchFishers(): void {
     this.FisherService.getFisherLists().subscribe(
       (fishers) => {
@@ -46,7 +59,33 @@ export class FisherDashboardComponent implements OnInit {
     );
   }
 
-  // Criando o perfil do pescador
+  // --------------------------------- ADV ---------------------------------
+  // Modal de advertência
+  currentFisherId: string | null = null;
+  selectedAdvertencias: string[] = []; // Substitua 'AdvertenciaType' pelo tipo específico, se houver
+
+  openAdvModal(fisher: FisherList, advModal: TemplateRef<any>) {
+    this.currentFisherId = fisher.id;
+    this.selectedAdvertencias = fisher.advertencias || []; // Garante que será um array mesmo que 'fisher.advertencias' seja undefined
+    this.modalRef = this.modalService.show(advModal);
+  }
+
+  // Adicionando nova advertência
+  onAdvSubmit() {
+    if (this.currentFisherId && this.advForm.valid) {
+      const advertencia = this.advForm.get('advertencias')?.value; // Ajustado para 'advertencias'
+      this.FisherService.addAdv(this.currentFisherId, advertencia).subscribe(() => {
+        console.log('Advertência adicionada com sucesso!');
+        this.modalRef?.hide();
+        this.fetchFishers();
+      }, error => {
+        console.error('Erro ao adicionar advertência', error);
+      });
+    }
+  }
+
+  // --------------------------- CREATE & UPDATE ---------------------------
+  // Modal de cadastro e edição
   openInfoModal(fisher: FisherList | null, infoModal: TemplateRef<any>): void {
     this.fisherForm.reset();
     if (fisher) {
@@ -60,14 +99,6 @@ export class FisherDashboardComponent implements OnInit {
       this.isEditMode = false;
     }
     this.modalRef = this.modalService.show(infoModal);
-  }
-
-  initForm() {
-    this.fisherForm = new FormGroup({
-      id: new FormControl(null),
-      nome: new FormControl(null),
-      contato: new FormControl(null),
-    });
   }
 
   // Editando o perfil do pescador
@@ -100,7 +131,7 @@ export class FisherDashboardComponent implements OnInit {
   }
 
   // --------------------------------- DELETE ---------------------------------
-  // Função de Excluir
+  // Função de excluir
   removeObj(id: String): void {
     this.FisherService.deleteFisherLists(id).subscribe(() => {
       console.log('Perfil excluído com sucesso!');
@@ -108,17 +139,13 @@ export class FisherDashboardComponent implements OnInit {
     });
   }
 
-  // Modal
-  public modalRef: BsModalRef | null = null;
-  selectedFisher: { id: String, nome: String } | null = null;
-
-  // Abrir o Modal
+  // Modal de exclusão
   openDeleteModal(template: TemplateRef<any>, fisher: FisherList): void {
-    this.selectedFisher = { id: fisher.id, nome: fisher.nome };
+    this.selectedFisher = {id: fisher.id, nome: fisher.nome};
     this.modalRef = this.modalService.show(template);
   }
 
-  // Confirmar a exclusão e chamar a função de excluir
+  // Confirmar a exclusão
   confirmDelete(): void {
     if (this.selectedFisher) {
       this.removeObj(this.selectedFisher.id);
@@ -126,4 +153,9 @@ export class FisherDashboardComponent implements OnInit {
       this.modalRef?.hide();
     }
   }
+
+  // --------------------------------- MODAL ---------------------------------
+  // Modal
+  public modalRef: BsModalRef | null = null;
+  selectedFisher: { id: String, nome: String } | null = null;
 }
