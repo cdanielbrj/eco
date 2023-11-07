@@ -32,29 +32,49 @@ public class SecurityConfigurations {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
+
+                        // Endpoints abertos a todos os usuários
                         .requestMatchers(HttpMethod.POST, "/eco_system/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/eco_system/auth/register").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/eco_system/auth/user/**").permitAll()
-                        // Lista todas as expedições - all users //
-                        .requestMatchers(HttpMethod.GET, "/eco_system/expedition-oprs").permitAll()
-                        // Lista uma expedição - all users //
-                        .requestMatchers(HttpMethod.GET, "/eco_system/expedition-oprs/**").permitAll()
-                        // Atualiza uma expedição - all users //
-                        .requestMatchers(HttpMethod.PUT, "/eco_system/expedition-oprs/**").permitAll()
-                        // Cria uma expedição - all users //
-                        .requestMatchers(HttpMethod.POST, "/eco_system/expedition").permitAll()
-                        // Exclui uma expedição - admin only //
+
+                        // Endpoints de expedição restritos ao papel USER ou ADMIN
+                        .requestMatchers(HttpMethod.POST, "/eco_system/expedition-oprs").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.PUT, "/eco_system/expedition-oprs/**").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.GET, "/eco_system/expedition-oprs/**").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.GET, "/eco_system/expedition-oprs").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.GET, "/eco_system/auth/user/list").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.GET, "/eco_system/fisher-oprs").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.GET, "/eco_system/ship-oprs").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.GET, "/eco_system/local-oprs").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.GET, "/eco_system/trash-oprs").hasAnyRole("ADMIN", "USER")
+
+                        // Endpoints de expedição restritos ao papel ADMIN
+                        .requestMatchers(HttpMethod.GET, "/eco_system/auth/user/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/eco_system/auth/register").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/eco_system/auth/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/eco_system/auth/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/eco_system/expedition-oprs/**").hasRole("ADMIN")
-                        // Lista todas as expedições - all users //
-                        .requestMatchers(HttpMethod.GET, "/eco_system/fisher-oprs").permitAll()
-                        // Lista uma expedição - all users //
-                        .requestMatchers(HttpMethod.GET, "/eco_system/fisher-oprs/**").permitAll()
-                        // Atualiza uma expedição - all users //
-                        .requestMatchers(HttpMethod.PUT, "/eco_system/fisher-oprs/**").permitAll()
-                        // Cria uma expedição - all users //
-                        .requestMatchers(HttpMethod.POST, "/eco_system/fisher-oprs").permitAll()
-                        // Exclui uma pescador - admin only //
+
+                        .requestMatchers(HttpMethod.GET, "/eco_system/fisher-oprs/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/eco_system/fisher-oprs").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/eco_system/fisher-oprs/**/newAdv").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/eco_system/fisher-oprs/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/eco_system/fisher-oprs/**").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/eco_system/ship-oprs/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/eco_system/ship-oprs").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/eco_system/ship-oprs/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/eco_system/ship-oprs/**").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/eco_system/local-oprs/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/eco_system/local-oprs").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/eco_system/local-oprs/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/eco_system/local-oprs/**").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/eco_system/trash-oprs/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/eco_system/trash-oprs").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/eco_system/trash-oprs/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/eco_system/trash-oprs/**").hasRole("ADMIN")
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
