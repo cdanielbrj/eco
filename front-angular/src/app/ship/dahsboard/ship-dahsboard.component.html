@@ -1,1 +1,91 @@
-<p>ship-dahsboard works!</p>
+<header>
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
+</header>
+<div class="content">
+  <div class="container" style="margin-top: 70px">
+    <div class="row">
+      <div class="col-xl-3 col-sm-6" *ngFor="let ShipList of ships">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="flex-1">
+                <h5 class="font-size-16 mb-1">{{ ShipList.nome }}</h5>
+                <h6>{{ ShipList.motor }}</h6>
+              </div>
+            </div>
+            <div class="mt-3 ship-info">
+              <p><strong>Dono:</strong> {{ShipList.ownerFisherNome}}</p>
+              <p><strong>Parceiro:</strong> {{ShipList.partnerFisherNome}}</p>
+            </div>
+            <div class="d-flex gap-2 pt-4">
+              <button type="button" class="btn btn-outline-info btn-sm w-50"
+                      (click)="editShip(ShipList.id)">
+                Editar
+              </button>
+              <button type="button" class="btn btn-outline-secondary btn-sm w-50"
+                      (click)="openDeleteModal(deleteConfirmationModal, ShipList)">Excluir
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Novo Usuário -->
+      <div class="col-xl-3 col-sm-6 d-flex align-items-center justify-content-center">
+        <div class="card ">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="align-items-center">
+                <h5 class="font-size-16 mb-1"><a class="text-dark">Nova Embarcação</a></h5>
+                <div class="d-flex justify-content-center">
+                  <a class="disc" href="/ship/new" style="color: black">
+                    <img
+                      src="../../../../assets/icons/yacht.png"
+                      height="30"
+                      alt="Boat Icon"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Delete -->
+<ng-template #deleteConfirmationModal>
+  <div>
+    <div class="modal-header">
+      <h5 class="modal-title" id="deleteModalLabel">Confirmar Exclusão</h5>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modalRef?.hide()"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <p>
+        Você tem certeza que deseja excluir o perfil de {{ selectedShip?.nome }}?
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="modalRef?.hide()"
+      >
+        Cancelar
+      </button>
+      <button type="button" class="btn btn-danger" (click)="confirmDelete()">
+        Excluir
+      </button>
+    </div>
+  </div>
+</ng-template>
+

@@ -180,12 +180,12 @@
     <div class="modal-body">
       <div *ngIf="selectedAdvertencias.length > 0; else noAdv">
         <div class="single-timeline-area">
-          <div class="timeline-date wow fadeInLeft">
+          <div class="timeline-date">
             <p>Advertências</p>
           </div>
           <div class="row" *ngFor="let advertencia of selectedAdvertencias">
             <div class="col-10">
-              <div class="single-timeline-content d-flex wow fadeInLeft">
+              <div class="single-timeline-content d-flex">
                 <p>{{ advertencia }}</p>
               </div>
             </div>

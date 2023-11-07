@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { FisherList } from '../services/fisher-list';
+import { FisherList } from './fisher-list';
 
 @Injectable({
   providedIn: 'root'

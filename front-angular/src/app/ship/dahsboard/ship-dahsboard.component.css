@@ -1,0 +1,39 @@
+body {
+  margin-top:20px;
+  background-color:#eee;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #eff0f2;
+  border-radius: 1rem;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 3px #e4e8f0;
+}
+
+.rounded-circle {
+  border-radius: 50%!important;
+}
+
+.bg-soft-primary {
+  background-color: rgba(59,118,225,.25)!important;
+}
+
+a {
+  text-decoration: none!important;
+}
+
+.mb-0 {
+  margin-bottom: 0!important;
+}
+
+
+.ship-info p {
+  margin-bottom: 0 !important;
+ }

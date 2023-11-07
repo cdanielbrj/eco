@@ -11,6 +11,8 @@ import {LocalDetailsComponent} from './local/details/local-details.component';
 import {HomeComponent} from "./global/components/home/home.component";
 import {ExpeditionStartComponent} from "./expedition/details/expedition-start/expedition-start.component";
 import {ExpeditionEndComponent} from "./expedition/details/expedition-end/expedition-end.component";
+import {ShipDahsboardComponent} from "./ship/dahsboard/ship-dahsboard.component";
+import {ShipDetailsComponent} from "./ship/details/ship-details.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -20,6 +22,9 @@ const routes: Routes = [
   {path: 'expedition/edit/:id', component: ExpeditionEndComponent},
   {path: 'expedition/start', component: ExpeditionStartComponent},
   {path: 'expedition/end/:id', component: ExpeditionEndComponent},
+  {path: 'ship/list', component: ShipDahsboardComponent},
+  {path: 'ship/new', component: ShipDetailsComponent},
+  {path: 'ship/edit/:id', component: ShipDetailsComponent},
   {path: 'user/list', component: UserDashboardComponent},
   {path: 'user/new', component: UsersComponent},
   {path: 'user/edit/:id', component: UsersComponent},

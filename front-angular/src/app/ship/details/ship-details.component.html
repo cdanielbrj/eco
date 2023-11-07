@@ -1,1 +1,121 @@
-<p>ship-details works!</p>
+<header xmlns="http://www.w3.org/1999/html">
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
+</header>
+<section class="vh-75">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-8 mb-4 mb-lg-0">
+        <div
+          class="card card-registration card-registration-2"
+          style="border-radius: 0.5rem"
+        >
+          <div class="card-body p-0">
+            <div class="row g-0">
+              <div class="col-lg-12">
+                <div class="p-5">
+                  <form [formGroup]="shipForm" (ngSubmit)="onSubmit()">
+                    <h4 class="fw-normal mb-4" style="color: #01afef">
+                      Informações de Registro da Embarcação
+                    </h4>
+                    <div class="row">
+                      <!-- Nome -->
+                      <div class="col-md-4 mb-4 pb-2">
+                        <div class="form-outline">
+                          <h6>Nome</h6>
+                          <input
+                            type="text"
+                            id="nome"
+                            name="nome"
+                            formControlName="nome"
+                            class="form-control"
+                            placeholder="Nome"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Motor -->
+                      <div class="col-md-4 mb-4 pb-2">
+                        <div class="form-outline">
+                          <h6>Motor</h6>
+                          <select
+                            class="form-select"
+                            aria-label="Default Select Example"
+                            id="motor"
+                            name="motor"
+                            formControlName="motor">
+                            <option value=null selected disabled>Tipos de Motores</option>
+                            <option value="1">Opção 1</option>
+                            <option value="2">Opção 2</option>
+                            <option value="3">Opção 3</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Capacidade -->
+                      <div class="col-md-4 mb-4 pb-2">
+                        <div class="form-outline">
+                          <h6>Capacidade</h6>
+                          <input
+                            type="text"
+                            id="capacidade"
+                            name="capacidade"
+                            formControlName="capacidade"
+                            class="form-control"
+                            placeholder="Capacidade Total"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <!-- Pescador Dono -->
+                      <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline">
+                          <h6>Pescador Dono</h6>
+                          <select
+                            class="form-select"
+                            aria-label="Pescador Dono"
+                            id="pescador-dono_id"
+                            name="pescador-dono_id"
+                            formControlName="ownerFisherId">
+                            <option value=null disabled selected>Pescador Dono</option>
+                            <option *ngFor="let fisher of fishers" [value]="fisher.id">{{ fisher.nome }}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Pescador Parceiro -->
+                      <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline">
+                          <h6>Pescador Parceiro</h6>
+                          <select
+                            class="form-select"
+                            aria-label="Pescador Parceiro"
+                            id="pescador-parceiro_id"
+                            name="pescador-parceiro_id"
+                            formControlName="partnerFisherId">
+                            <option value=null disabled selected>Pescador Parceiro</option>
+                            <option *ngFor="let fisher of fishers" [value]="fisher.id" [disabled]="(fisher.advertencias?.length ?? 0) >= 3">{{ fisher.nome }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      class="btn btn-outline-primary"
+                    >
+                      Cadastrar Embarcação
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
