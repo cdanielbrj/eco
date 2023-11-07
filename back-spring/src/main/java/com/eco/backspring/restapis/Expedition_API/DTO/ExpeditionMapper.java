@@ -21,6 +21,9 @@ public class ExpeditionMapper {
         expedition.setId(dto.id());
         expedition.setData(dto.data());
         expedition.setHora_inicio(dto.hora_inicio());
+        expedition.setSacosenv(dto.sacosenv());
+        expedition.setSacosusd(dto.sacosusd());
+        expedition.setPesolixo(dto.pesolixo());
         expedition.setLocal(local);
         expedition.setShip(ship);
         expedition.setUser(user);
@@ -37,6 +40,9 @@ public class ExpeditionMapper {
                 expedition.getId(),
                 expedition.getData(),
                 expedition.getHora_inicio(),
+                expedition.getSacosenv(),
+                expedition.getSacosusd(),
+                expedition.getPesolixo(),
                 expedition.getLocal().getId(),
                 expedition.getShip().getId(),
                 expedition.getUser().getId(),

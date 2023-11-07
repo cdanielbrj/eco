@@ -47,22 +47,17 @@ export class ExpeditionEndComponent implements OnInit {
 
   // Criando a expedição
   initForm() {
-    let id = null;
-    let data = null;
-    let hora_inicio = null;
-    let user_id = null;
-    let ship_id = null;
-    let local_id = null;
-    let trashIds = null;
-
     this.expeditionForm = new FormGroup({
-      id: new FormControl(id),
-      data: new FormControl(data),
-      hora_inicio: new FormControl(hora_inicio),
-      user_id: new FormControl(user_id),
-      ship_id: new FormControl(ship_id),
-      local_id: new FormControl(local_id),
-      trashIds: new FormControl(trashIds),
+      id: new FormControl(null),
+      data: new FormControl(null),
+      hora_inicio: new FormControl(null),
+      sacosenv: new FormControl(null),
+      sacosusd: new FormControl(null),
+      pesolixo: new FormControl(null),
+      user_id: new FormControl(null),
+      ship_id: new FormControl(null),
+      local_id: new FormControl(null),
+      trashIds: new FormControl(null),
     });
   }
 
@@ -71,30 +66,31 @@ export class ExpeditionEndComponent implements OnInit {
     this.ExpeditionsService.getExpeditionDetails(id).subscribe((expedition) => {
       console.log('Detalhes da Expedição:', expedition);
       this.isEditMode = true;
-
       this.expeditionForm.patchValue({
         id: expedition.id,
         data: expedition.data,
         hora_inicio: expedition.hora_inicio,
+        sacosenv: expedition.sacosenv,
+        sacosusd: expedition.sacosusd,
+        pesolixo: expedition.pesolixo,
         user_id: expedition.user_id,
         ship_id: expedition.ship_id,
         local_id: expedition.local_id,
-        trashIds: expedition.trashIds,  // Ou trash_ids, dependendo do nome correto na resposta
+        trashIds: expedition.trashIds,
       });
 
-      // Adicionando trash_ids aos selectedTrashs
-      if (expedition.trashIds) {  // Ou trash_ids, dependendo do nome correto na resposta
-        this.selectedTrashs = [...expedition.trashIds];  // Ou trash_ids, dependendo do nome correto na resposta
+      //trash_ids aos selectedTrashs
+      if (expedition.trashIds) {
+        this.selectedTrashs = [...expedition.trashIds];
       }
     });
   }
 
   // Enviando a expedição
   onSubmit() {
-    // Construindo o objeto da expedição
     const expeditionData = {
       ...this.expeditionForm.value,
-      trashIds: this.selectedTrashs  // Adicionando os IDs dos lixos selecionados diretamente
+      trashIds: this.selectedTrashs
     };
     console.log("Dados a serem enviados:", expeditionData);
     if (expeditionData.id) {
@@ -146,8 +142,6 @@ export class ExpeditionEndComponent implements OnInit {
     this.TrashService.getTrashLists().subscribe((data) => {
       console.log("Resíduos recuperados: ", data);
       this.trashs = data;
-
-      // Certifique-se de que os resíduos selecionados estão sendo destacados após o carregamento dos lixos
       if (this.isEditMode && this.expeditionForm.value.trash_ids) {
         this.selectedTrashs = [...this.expeditionForm.value.trash_ids];
       }

@@ -3,7 +3,6 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {ShipService} from "../services/ship.service";
 import {FisherService} from "../../fisher/services/fisher.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Observable} from "rxjs";
 import {FisherList} from "../../fisher/services/fisher-list";
 
 @Component({
@@ -50,13 +49,12 @@ export class ShipDetailsComponent implements OnInit {
   loadShipDetails(id: string) {
     this.ShipService.getShipDetails(id).subscribe((ship) => {
       this.isEditMode = true;
-      // Configure o formulário com todos os valores recebidos, incluindo os pescadores
       this.shipForm.setValue({
         id: ship.id,
         nome: ship.nome,
         motor: ship.motor,
         capacidade: ship.capacidade,
-        ownerFisherId: ship.ownerFisherId, // Atribua os valores dos pescadores
+        ownerFisherId: ship.ownerFisherId,
         partnerFisherId: ship.partnerFisherId
       });
     });
@@ -80,7 +78,6 @@ export class ShipDetailsComponent implements OnInit {
   carregarPescadoresDisponiveis(): void {
     this.ShipService.getUnassociatedFishers().subscribe(
       (fishers) => {
-        console.log('Pescadores recebidos:', fishers); // Adicione esta linha para depuração
         this.fishers = fishers;
       },
       (error) => {

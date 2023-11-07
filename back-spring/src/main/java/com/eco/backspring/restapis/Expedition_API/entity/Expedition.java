@@ -24,6 +24,15 @@ public class Expedition {
     @Column(nullable = false)
     private String hora_inicio;
 
+    @Column(nullable = true)
+    private String sacosenv;
+
+    @Column(nullable = true)
+    private String sacosusd;
+
+    @Column(nullable = true)
+    private String pesolixo;
+
     @ManyToOne
     @JoinColumn(name = "local_id", nullable = true)
     private Local local;
@@ -54,6 +63,18 @@ public class Expedition {
 
     public void setHora_inicio(String hora_inicio) {
         this.hora_inicio = hora_inicio;
+    }
+
+    public void setSacosenv(String sacosenv) {
+        this.sacosenv = sacosenv;
+    }
+
+    public void setSacosusd(String sacosusd) {
+        this.sacosusd = sacosusd;
+    }
+
+    public void setPesolixo(String pesolixo) {
+        this.pesolixo = pesolixo;
     }
 
     public void setUser(User user) {

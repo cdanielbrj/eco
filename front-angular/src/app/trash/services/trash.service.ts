@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TrashList} from "./trash-list";
@@ -8,7 +8,9 @@ import {TrashList} from "./trash-list";
 })
 export class TrashService {
   private baseURL = 'http://localhost:8080/eco_system/trash-oprs';
-  constructor(private httpClient: HttpClient) {}
+
+  constructor(private httpClient: HttpClient) {
+  }
 
   /* Listando todos os tipos */
   getTrashLists(): Observable<TrashList[]> {

@@ -21,10 +21,9 @@ export class ShipService {
   getUnassociatedFishers(): Observable<FisherList[]> {
     return forkJoin({
       ships: this.getShipGeneralInfo(),
-      fishers: this.fisherService.getFisherLists() // Supõe-se que retorna todos os pescadores
+      fishers: this.fisherService.getFisherLists()
     }).pipe(
-      map(({ ships, fishers }) => {
-        // Cria um conjunto com todos os IDs dos pescadores associados a barcos
+      map(({ships, fishers}) => {
         const associatedFisherIds = new Set<string>(
           ships.reduce((acc, ship) => {
             if (ship.ownerFisherId) acc.push(ship.ownerFisherId.toString());
@@ -32,8 +31,6 @@ export class ShipService {
             return acc;
           }, [] as string[])
         );
-
-        // Filtra e retorna apenas os pescadores que não estão associados a nenhum barco e não estão suspensos
         return fishers.filter(fisher =>
           !associatedFisherIds.has(fisher.id.toString()) && // Não associado a barco
           (fisher.advertencias?.length ?? 0) < 3 // Menos de 3 advertências
@@ -54,12 +51,12 @@ export class ShipService {
             ? this.fisherService.getFisherDetails(ship.partnerFisherId)
             : of(null);
 
-          return forkJoin({ owner: owner$, partner: partner$ }).pipe(
-            map(({ owner, partner }) => ({
+          return forkJoin({owner: owner$, partner: partner$}).pipe(
+            map(({owner, partner}) => ({
               ...ship,
               ownerFisherNome: owner ? owner.nome : '',
               partnerFisherNome: partner ? partner.nome : '',
-            }) as ShipDetails) // casting to ShipDetails to satisfy the expected return type
+            }) as ShipDetails)
           );
         });
         return forkJoin(shipsWithDetails$);
@@ -90,7 +87,7 @@ export class ShipService {
     // Verificar se ambos os pescadores estão presentes
     if (!form.ownerFisherId || !form.partnerFisherId) {
       // Lançar um erro se algum dos pescadores estiver faltando
-      return throwError(() => new Error('Both owner and partner fishers must be provided.'));
+      return throwError(() => new Error('Tanto Dono quanto Parceiro devem ser selecionados'));
     }
 
     // Continuar com a criação da embarcação se ambos os pescadores estiverem presentes

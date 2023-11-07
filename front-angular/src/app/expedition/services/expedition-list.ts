@@ -2,6 +2,9 @@ export interface ExpeditionList {
     id: string;
     data: string;
     hora_inicio: string;
+    sacosenv: string;
+    sacosusd: string;
+    pesolixo: string;
     user_id: string;
     local_id: string;
     ship_id: string;

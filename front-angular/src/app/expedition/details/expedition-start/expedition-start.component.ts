@@ -42,20 +42,13 @@ export class ExpeditionStartComponent implements OnInit {
 
   // Criando a expedição
   initForm() {
-    let id = null;
-    let data = null;
-    let hora_inicio = null;
-    let user_id = null;
-    let ship_id = null;
-    let local_id = null;
-
     this.expeditionForm = new FormGroup({
-      id: new FormControl(id),
-      data: new FormControl(data),
-      hora_inicio: new FormControl(hora_inicio),
-      user_id: new FormControl(user_id),
-      ship_id: new FormControl(ship_id),
-      local_id: new FormControl(local_id),
+      id: new FormControl(null),
+      data: new FormControl(null),
+      hora_inicio: new FormControl(null),
+      user_id: new FormControl(null),
+      ship_id: new FormControl(null),
+      local_id: new FormControl(null),
     });
   }
 

@@ -56,7 +56,7 @@ public class SecurityConfigurations {
 
                         .requestMatchers(HttpMethod.GET, "/eco_system/fisher-oprs/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/eco_system/fisher-oprs").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/eco_system/fisher-oprs/**/newAdv").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/eco_system/fisher-oprs/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/eco_system/fisher-oprs/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/eco_system/fisher-oprs/**").hasRole("ADMIN")
 

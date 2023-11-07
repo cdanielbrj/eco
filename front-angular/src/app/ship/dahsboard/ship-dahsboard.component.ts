@@ -1,5 +1,4 @@
-import {Component, TemplateRef} from '@angular/core';
-
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {Router} from "@angular/router";
 import {ShipList} from "../services/ship-list";
@@ -10,7 +9,7 @@ import {ShipService} from "../services/ship.service";
   templateUrl: './ship-dahsboard.component.html',
   styleUrls: ['./ship-dahsboard.component.css']
 })
-export class ShipDahsboardComponent {
+export class ShipDahsboardComponent implements OnInit {
   ships: ShipList[] = [];
 
   constructor(

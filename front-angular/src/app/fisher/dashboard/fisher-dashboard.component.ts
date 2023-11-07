@@ -1,5 +1,5 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {BsModalService, BsModalRef} from 'ngx-bootstrap/modal';
 import {FisherList} from '../services/fisher-list';
 import {FisherService} from '../services/fisher.service';
@@ -62,11 +62,11 @@ export class FisherDashboardComponent implements OnInit {
   // --------------------------------- ADV ---------------------------------
   // Modal de advertência
   currentFisherId: string | null = null;
-  selectedAdvertencias: string[] = []; // Substitua 'AdvertenciaType' pelo tipo específico, se houver
+  selectedAdvertencias: string[] = [];
 
   openAdvModal(fisher: FisherList, advModal: TemplateRef<any>) {
     this.currentFisherId = fisher.id;
-    this.selectedAdvertencias = fisher.advertencias || []; // Garante que será um array mesmo que 'fisher.advertencias' seja undefined
+    this.selectedAdvertencias = fisher.advertencias || [];
     this.modalRef = this.modalService.show(advModal);
   }
 
@@ -154,7 +154,6 @@ export class FisherDashboardComponent implements OnInit {
     }
   }
 
-  // --------------------------------- MODAL ---------------------------------
   // Modal
   public modalRef: BsModalRef | null = null;
   selectedFisher: { id: String, nome: String } | null = null;

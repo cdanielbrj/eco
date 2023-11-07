@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {forkJoin, map, Observable, of, switchMap} from 'rxjs';
-import {ExpeditionDetails, ExpeditionList} from './expedition-list';
+import {ExpeditionList} from './expedition-list';
 import {UserService} from "../../users/services/user.service";
 import {LocalService} from "../../local/services/local.service";
 import {ShipService} from "../../ship/services/ship.service";
@@ -22,6 +22,7 @@ export class ExpeditionService {
     private trashService: TrashService
   ) {
   }
+
   /* Listando todas as expedições com informações gerais */
   getExpeditionGeneralInfo(): Observable<ExpeditionList[]> {
     return this.httpClient.get<ExpeditionList[]>(this.baseURL).pipe(
@@ -46,6 +47,7 @@ export class ExpeditionService {
   }
 
   /* Listando todas as expedições com todas as informações */
+
   /* A função funciona, portanto, decidi deixa-la no código para eventual necessidade */
   getExpeditionLists(): Observable<ExpeditionList[]> {
     return this.httpClient.get<ExpeditionList[]>(this.baseURL).pipe(
@@ -91,6 +93,9 @@ export class ExpeditionService {
     const formData: ExpeditionList = {
       data: form.data,
       hora_inicio: form.hora_inicio,
+      sacosenv: form.sacosenv,
+      sacosusd: form.sacosusd,
+      pesolixo: form.pesolixo,
       user_id: form.user_id,
       ship_id: form.ship_id,
       local_id: form.local_id,

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {UserList} from "./user-list"
@@ -10,7 +10,9 @@ export class UserService {
   private baseURL = 'http://localhost:8080/eco_system/auth';
   private userURL = `${this.baseURL}/user`
   private listURL = `${this.baseURL}/user/list`;
-  constructor(private httpClient: HttpClient) {}
+
+  constructor(private httpClient: HttpClient) {
+  }
 
   /* Listando todos os perfis */
   getUserLists(): Observable<UserList[]> {

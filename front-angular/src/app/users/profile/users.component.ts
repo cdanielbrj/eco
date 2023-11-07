@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../services/user.service";
@@ -9,14 +9,16 @@ import {UserRole} from "../services/user-role.enum";
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
   userForm!: FormGroup;
   isEditMode: boolean = false;
+
   constructor(
     private UserService: UserService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -29,19 +31,13 @@ export class UsersComponent {
 
   // Criando o perfil do usuario
   initForm() {
-    let id = null;
-    let nome = null;
-    let contato = null;
-    let login = null;
-    let password = null;
     let role = UserRole.USER;
-
     this.userForm = new FormGroup({
-      id: new FormControl(id),
-      nome: new FormControl(nome),
-      contato: new FormControl(contato),
-      login: new FormControl(login),
-      password: new FormControl(password),
+      id: new FormControl(null),
+      nome: new FormControl(null),
+      contato: new FormControl(null),
+      login: new FormControl(null),
+      password: new FormControl(null),
       role: new FormControl(role)
     });
   }

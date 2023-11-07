@@ -1,4 +1,4 @@
-import {Component, TemplateRef} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {TrashList} from "../services/trash-list"
 import {TrashService} from "../services/trash.service";
 import {FormControl, FormGroup} from "@angular/forms";
@@ -10,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
   templateUrl: './trash.component.html',
   styleUrls: ['./trash.component.css']
 })
-export class TrashComponent {
+export class TrashComponent implements OnInit {
   trashs: TrashList[] = [];
   trashForm!: FormGroup;
   isEditMode: boolean = false;
@@ -19,7 +19,8 @@ export class TrashComponent {
     private TrashService: TrashService,
     private modalService: BsModalService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
 
   // --------------------------------- GET ---------------------------------
   // Listagem dos tipos automático
@@ -111,7 +112,7 @@ export class TrashComponent {
 
   // Abrir o Modal
   openDeleteModal(template: TemplateRef<any>, trash: TrashList): void {
-    this.selectedTrash = { id: trash.id, nome: trash.nome };
+    this.selectedTrash = {id: trash.id, nome: trash.nome};
     this.modalRef = this.modalService.show(template);
   }
 

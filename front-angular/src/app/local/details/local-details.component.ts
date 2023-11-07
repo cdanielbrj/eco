@@ -1,4 +1,4 @@
-import {Component, TemplateRef} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {LocalList} from "../services/local-list";
 import {LocalService} from "../services/local.service";
 import {FormControl, FormGroup} from "@angular/forms";
@@ -10,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
   templateUrl: './local-details.component.html',
   styleUrls: ['./local-details.component.css']
 })
-export class LocalDetailsComponent {
+export class LocalDetailsComponent implements OnInit {
   locals: LocalList[] = [];
   localForm!: FormGroup;
   isEditMode: boolean = false;
